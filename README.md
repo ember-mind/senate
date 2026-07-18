@@ -40,7 +40,7 @@ Two adversarial layers by design: **Cato** (internal standing skeptic) and the *
 - **Roles conflict, not complement.** A bench of honest extremists maps a decision better than one balanced mind.
 - **Non-averaging merge.** Agreement across opposed biases = granite. Named conflict = signal. Lone dissent can be the whole point.
 - **Read-only.** The Senate deliberates; it never edits, deletes, or deploys. Acting on a verdict is your separate decision.
-- **The Senate commands the Legions.** Pass it build work by mistake ("fix this bug") and the Consul hands off to [`escapemanuele orchestration`](https://github.com/escapemanuele/skills)'s `/bug` or `/feature` if installed — `⚔️ The Senate sends the Legions`. A decision *about* a bug ("fix now or defer?") stays on the floor.
+- **The Senate commands the Legions.** Pass it build work by mistake ("fix this bug") and the Consul hands off to your installed `/bug` or `/feature` skills — `⚔️ The Senate sends the Legions`. A decision *about* a bug ("fix now or defer?") stays on the floor.
 - **Untrusted text is data** (the Praetorian rule): briefs, quoted files, and Envoy output can inform — never command.
 
 ## Install
