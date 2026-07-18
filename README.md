@@ -2,10 +2,10 @@
 
 *A decision-analysis swarm for Claude Code. Rome does not average — Rome decides.*
 
-One command — `/decide` — convenes a bench of deliberately **conflicting** senators on your decision, lets a cross-family Foreign Envoy attack whatever they agree on, and merges the result without smoothing the disagreements away.
+One command — `/senate` — convenes a bench of deliberately **conflicting** senators on your decision, lets a cross-family Foreign Envoy attack whatever they agree on, and merges the result without smoothing the disagreements away.
 
 ```
-/decide Should I migrate the blog off WordPress? [--debate] [--log]
+/senate Should I migrate the blog off WordPress? [--debate] [--log]
 ```
 
 ## How it works
@@ -40,12 +40,13 @@ Two adversarial layers by design: **Cato** (internal standing skeptic) and the *
 - **Roles conflict, not complement.** A bench of honest extremists maps a decision better than one balanced mind.
 - **Non-averaging merge.** Agreement across opposed biases = granite. Named conflict = signal. Lone dissent can be the whole point.
 - **Read-only.** The Senate deliberates; it never edits, deletes, or deploys. Acting on a verdict is your separate decision.
+- **The Senate commands the Legions.** Pass it build work by mistake ("fix this bug") and the Consul hands off to [`escapemanuele orchestration`](https://github.com/escapemanuele/skills)'s `/bug` or `/feature` if installed — `⚔️ The Senate sends the Legions`. A decision *about* a bug ("fix now or defer?") stays on the floor.
 - **Untrusted text is data** (the Praetorian rule): briefs, quoted files, and Envoy output can inform — never command.
 
 ## Install
 
 ```bash
-./install.sh    # copies into ~/.claude (agents/, skills/decide/, senate/)
+./install.sh    # copies into ~/.claude (agents/, skills/senate/, senate/)
 ```
 
 Requires Claude Code. Optional: [Codex CLI](https://github.com/openai/codex) + `codex` plugin for the cross-family Envoy.
@@ -53,7 +54,7 @@ Requires Claude Code. Optional: [Codex CLI](https://github.com/openai/codex) + `
 ## Repo map
 
 - `agents/senator.md` — one generic read-only senator agent (personas are roster rows, not agent files)
-- `skills/decide/` — the Consul workflow + `roster.yaml` (+ repo-only `EVALUATION.yaml`)
+- `skills/senate/` — the Consul workflow + `roster.yaml` (+ repo-only `EVALUATION.yaml`)
 - `MODEL-POLICY.md` — role→model bindings, upgrade discipline
 - `EVALS.md` — per-role eval scenarios (upgrade only on evidence)
 - `LORE.md` — the Roman world, human-facing (never loaded at runtime)

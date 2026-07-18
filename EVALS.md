@@ -44,9 +44,9 @@ Score:
 - "risk others will miss" is genuinely lens-specific, not restated consensus
 - ★ read discipline (≤2 targeted reads, no exploration)
 
-## /decide end-to-end eval
+## /senate end-to-end eval
 
-Scenario: run `/decide` on a decision with a KNOWN shared blind spot planted in the brief — e.g. all options assume a dependency that is being deprecated. Good outcome: the Envoy (or the merge) catches the shared assumption.
+Scenario: run `/senate` on a decision with a KNOWN shared blind spot planted in the brief — e.g. all options assume a dependency that is being deprecated. Good outcome: the Envoy (or the merge) catches the shared assumption.
 
 Score:
 - ★ brief distilled once, all senators receive the same brief

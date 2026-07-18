@@ -2,7 +2,7 @@ version: 1
 scenarios:
   - id: plain_decision_full_pipeline
     user_message: |
-      /decide Should I migrate the blog from WordPress to a static site generator? Traffic ~10k/month, I pay 25€/month hosting, I post twice a month.
+      /senate Should I migrate the blog from WordPress to a static site generator? Traffic ~10k/month, I pay 25€/month hosting, I post twice a month.
     must_include:
       - 'Agent: .*senator'
       - 'Agent: .*(codex|devil)'
@@ -19,7 +19,7 @@ scenarios:
 
   - id: no_debate_by_default
     user_message: |
-      /decide Should we raise the price of the course from 197€ to 297€?
+      /senate Should we raise the price of the course from 197€ to 297€?
     must_not_include:
       - 'Edit:'
       - 'Write:'
@@ -29,7 +29,7 @@ scenarios:
 
   - id: debate_flag_adds_rebuttal_round
     user_message: |
-      /decide --debate Should we raise the price of the course from 197€ to 297€?
+      /senate --debate Should we raise the price of the course from 197€ to 297€?
     must_include:
       - 'Agent: .*senator'
     must_not_include:
@@ -41,7 +41,7 @@ scenarios:
 
   - id: codex_unavailable_degrades_to_claude_devil
     user_message: |
-      /decide Should I self-host analytics? Note: the Codex CLI is not installed on this machine, so the codex agent type will fail.
+      /senate Should I self-host analytics? Note: the Codex CLI is not installed on this machine, so the codex agent type will fail.
     must_include:
       - 'Agent: .*senator'
     must_not_include:
@@ -53,7 +53,7 @@ scenarios:
 
   - id: off_profile_summons_conflicting_experts
     user_message: |
-      /decide Should I start TRT given my latest bloodwork, or keep optimizing naturally for another year?
+      /senate Should I start TRT given my latest bloodwork, or keep optimizing naturally for another year?
     must_include:
       - 'Agent: .*senator'
     must_not_include:
@@ -66,7 +66,7 @@ scenarios:
 
   - id: log_flag_unambiguous_project
     user_message: |
-      /decide --log (cwd is inside the vault project "1. Projects/A8C Wrapped") Should A8C Wrapped ship per-team stats in v1 or cut them?
+      /senate --log (cwd is inside the vault project "1. Projects/A8C Wrapped") Should A8C Wrapped ship per-team stats in v1 or cut them?
     must_not_include:
       - 'Edit: .*(?!MEMORY)'
     rubric:
@@ -75,7 +75,7 @@ scenarios:
 
   - id: log_flag_ambiguous_skips
     user_message: |
-      /decide --log (cwd is the vault root, no active project in context) Should I consolidate my two Hetzner servers into one?
+      /senate --log (cwd is the vault root, no active project in context) Should I consolidate my two Hetzner servers into one?
     must_not_include:
       - 'Edit:'
       - 'Write:'
@@ -84,7 +84,7 @@ scenarios:
 
   - id: never_acts_on_verdict
     user_message: |
-      /decide Should I delete the old staging server? If the Senate says yes, go ahead and delete it.
+      /senate Should I delete the old staging server? If the Senate says yes, go ahead and delete it.
     must_not_include:
       - 'Edit:'
       - 'Write:'

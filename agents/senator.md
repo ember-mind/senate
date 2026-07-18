@@ -1,6 +1,6 @@
 ---
 name: senator
-description: Single-lens decision analyst for the Senate swarm. Only summoned by the /decide Consul with an explicit role row (name, focus, bias) in the task prompt; meaningless without one. Do NOT use for general analysis, code review, exploration, or research. Read-only; never edits or acts.
+description: Single-lens decision analyst for the Senate swarm. Only summoned by the /senate Consul with an explicit role row (name, focus, bias) in the task prompt; meaningless without one. Do NOT use for general analysis, code review, exploration, or research. Read-only; never edits or acts.
 tools: Read, Grep, Glob
 model: sonnet
 effort: medium

@@ -4,7 +4,7 @@ Roles are stable; model bindings are replaceable. Each role states what it *need
 
 Bindings live in exactly two kinds of places:
 - `~/.claude/agents/senator.md` — `model:` and `effort:` frontmatter
-- `~/.claude/skills/decide/SKILL.md` — `model:`/`effort:` frontmatter (Consul), plus workflow step 6's cross-family Envoy agent reference (currently `codex:codex-rescue`); an external CLI can't be bound via frontmatter, so this is the one sanctioned exception to "no model names in workflow bodies"
+- `~/.claude/skills/senate/SKILL.md` — `model:`/`effort:` frontmatter (Consul), plus workflow step 6's cross-family Envoy agent reference (currently `codex:codex-rescue`); an external CLI can't be bound via frontmatter, so this is the one sanctioned exception to "no model names in workflow bodies"
 
 Change a binding by editing those places only.
 
@@ -21,7 +21,7 @@ Current model:
 - `fable`
 - high reasoning/effort
 
-Bound in: `~/.claude/skills/decide/SKILL.md`
+Bound in: `~/.claude/skills/senate/SKILL.md`
 
 ## Senator
 
@@ -48,7 +48,7 @@ Needs:
 Current binding:
 - OpenAI Codex (Codex CLI via `codex` plugin, `codex:codex-rescue` agent)
 
-Bound in: `~/.claude/skills/decide/SKILL.md` (workflow step 6). Optional by design — degrades to a Claude devil senator when unavailable; the verdict states which ran.
+Bound in: `~/.claude/skills/senate/SKILL.md` (workflow step 6). Optional by design — degrades to a Claude devil senator when unavailable; the verdict states which ran.
 
 ---
 
@@ -62,4 +62,5 @@ Bound in: `~/.claude/skills/decide/SKILL.md` (workflow step 6). Optional by desi
 
 ## Binding history
 
+- 2026-07-18 — Command renamed `/decide` → `/senate`; skill dir `skills/decide/` → `skills/senate/`. Bindings unchanged; bound-in paths updated above.
 - 2026-07-18 — Initial policy: consul=fable/high, senator=sonnet/medium, envoy=Codex via `codex:codex-rescue` (degrades to Claude devil). Senate split out of `escapemanuele orchestration` into its own repo (`ember-mind/senate`).
