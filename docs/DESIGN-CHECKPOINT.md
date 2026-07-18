@@ -1,6 +1,6 @@
 # The Senate — Design Checkpoint
 
-Working checkpoint for extending the `escapemanuele orchestration` skill with a
+Working checkpoint for extending the parent code-orchestration system (private) with a
 non-code pillar, reskinned as a Roman-world metaphor ("The Senate"). Living doc,
 updated during grilling. Not the final spec.
 

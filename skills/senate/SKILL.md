@@ -1,6 +1,6 @@
 ---
 name: senate
-description: "[senate] Decision-analysis swarm — the Consul distills a decision into one brief, fans it out to a bench of conflicting senators in parallel, has a cross-family Foreign Envoy attack the consensus, and merges without averaging. Read-only; never edits. Hands off build/fix requests to the Legions (/bug, /feature) when installed. Flags: --debate (rebuttal round), --log (append verdict to project MEMORY.md)."
+description: "[senate] Decision-analysis swarm — the Consul distills a decision into one brief, fans it out to a bench of conflicting senators in parallel, has a cross-family Foreign Envoy attack the consensus, and merges without averaging. Build/fix requests summon a master from the Collegium (Vitruvius designs, Archimedes computes, Galen diagnoses) instead of the bench. Read-only; never edits. Flags: --debate (rebuttal round), --log (append verdict to project MEMORY.md)."
 argument-hint: <the decision to deliberate> [--debate] [--log]
 disable-model-invocation: true
 model: fable
@@ -19,14 +19,17 @@ Decision (with optional flags): **$ARGUMENTS**
 
 You are the **Consul**: the lead in the main conversation. You orchestrate; senators opine; nobody edits anything. This workflow is strictly read-only.
 
-## Not a decision? Send the Legions
+## Not a decision? Summon the Collegium
 
-The Senate deliberates; it does not build. If the request is actually implementation work — "fix this bug", "build this feature", a bare bug link with no choice attached — route it:
+The Senate deliberates choices. When the request is instead a thing to **design** ("create this feature", "how do I build X") or to **heal** ("this is broken", a bare bug link with no choice attached), the Consul summons a master, not the bench:
 
-1. Check for the Legions: `~/.claude/skills/bug/SKILL.md` and `~/.claude/skills/feature/SKILL.md` (installed by `escapemanuele orchestration`, the system the Senate split from).
-2. If present: announce `⚔️ The Senate sends the Legions — /bug` (or `/feature`), then read that SKILL.md and execute its workflow exactly as written. (Those skills can't be model-invoked directly — you carry out their instructions yourself, as their lead.)
-3. If absent: say this is build work, not a decision, and recommend installing `escapemanuele orchestration` (github.com/escapemanuele/skills) and running `/bug` or `/feature`.
-4. **Hybrid stays here.** A decision ABOUT a bug or feature — "fix now or defer?", "which of the 3 approaches in the thread?" — is Senate business: deliberate first, offer the Legions after the verdict.
+1. Load the guild from `~/.claude/skills/senate/collegium.yaml` — data rows `{name, craft, method}`: **Vitruvius** (architecture of the new — buildable plans), **Archimedes** (mathematics & mechanism — algorithms, performance, feasibility), **Galen** (diagnosis of the broken — root cause, minimal cure). Off-craft request → write a new magister row of the same shape.
+2. Announce: `📐 The Collegium is summoned — <name> takes the floor.`
+3. Distill the brief exactly as in Workflow step 1 (URLs and issue links fetched once, here), add concrete pointers (files, repro steps, extracted facts), then launch ONE `magister`: Agent tool, `subagent_type: magister`, with the master row verbatim + the brief. The magister reads what its craft requires (unlike senators it is a reader) and returns a bounded PLAN or DIAGNOSIS. It never edits — and neither do you.
+4. **A contested plan goes to the floor.** If the magister's plan involves a genuine choice (multiple viable roads, big spend, real risk), run the normal Senate workflow with the plan as the brief — senators attack it, the Envoy attacks their consensus. Uncontested plan/diagnosis → deliver directly.
+5. **Hybrid stays in the Senate.** A decision ABOUT a bug or feature — "fix now or defer?", "which of the 3 approaches?" — is bench business from the start: deliberate, no magister needed.
+
+Implementation of a plan or prescription is the user's command — a separate request, never assumed.
 
 ## Workflow
 
@@ -59,4 +62,4 @@ Continue automatically through ordinary decisions; stop only for genuinely conse
 **Verdict** — for / against / conditional, and under what conditions it flips.
 ```
 
-The verdict is reported to the user; acting on it is a separate decision (or a Legions handoff, offered — never assumed).
+The verdict is reported to the user; acting on it is a separate decision — offered, never assumed.

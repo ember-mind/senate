@@ -1,9 +1,8 @@
 # Model Policy
 
-Roles are stable; model bindings are replaceable. Each role states what it *needs* (permanent) and which model currently *holds* it (temporary). When a better model appears, change the binding — never the workflow or the role definition. (Discipline pattern copied from `escapemanuele orchestration`; this repo keeps its own small policy so it stays standalone.)
-
+Roles are stable; model bindings are replaceable. Each role states what it *needs* (permanent) and which model currently *holds* it (temporary). When a better model appears, change the binding — never the workflow or the role definition.
 Bindings live in exactly two kinds of places:
-- `~/.claude/agents/senator.md` — `model:` and `effort:` frontmatter
+- `~/.claude/agents/senator.md` and `~/.claude/agents/magister.md` — `model:` and `effort:` frontmatter
 - `~/.claude/skills/senate/SKILL.md` — `model:`/`effort:` frontmatter (Consul), plus workflow step 6's cross-family Envoy agent reference (currently `codex:codex-rescue`); an external CLI can't be bound via frontmatter, so this is the one sanctioned exception to "no model names in workflow bodies"
 
 Change a binding by editing those places only.
@@ -38,6 +37,21 @@ Bound in: `~/.claude/agents/senator.md`
 
 Diversity comes from role rows (roster.yaml), not per-senator models. Multi-family senators are a documented future extension — the star topology already permits dropping in an external senator.
 
+## Magister (Collegium master)
+
+Needs:
+- deep single-craft reasoning (architecture, mechanism, or diagnosis) without dilution
+- evidence discipline: reads with intent, separates verified from assumed
+- bounded, structured plans/diagnoses
+
+Current model:
+- `fable`
+- high reasoning/effort
+
+Bound in: `~/.claude/agents/magister.md`
+
+One master per request (the "frontier few" tier) — craft quality over cost; the plan is what the user acts on. Personas (Vitruvius, Archimedes, Galen) are data rows in `collegium.yaml`, not per-persona agents or bindings.
+
 ## Foreign Envoy (cross-family)
 
 Needs:
@@ -63,4 +77,5 @@ Bound in: `~/.claude/skills/senate/SKILL.md` (workflow step 6). Optional by desi
 ## Binding history
 
 - 2026-07-18 — Command renamed `/decide` → `/senate`; skill dir `skills/decide/` → `skills/senate/`. Bindings unchanged; bound-in paths updated above.
-- 2026-07-18 — Initial policy: consul=fable/high, senator=sonnet/medium, envoy=Codex via `codex:codex-rescue` (degrades to Claude devil). Senate split out of `escapemanuele orchestration` into its own repo (`ember-mind/senate`).
+- 2026-07-18 — Collegium added: magister=fable/high (one master per request — the "frontier few" tier; craft quality over cost).
+- 2026-07-18 — Initial policy: consul=fable/high, senator=sonnet/medium, envoy=Codex via `codex:codex-rescue` (degrades to Claude devil).

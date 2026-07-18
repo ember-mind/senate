@@ -34,13 +34,21 @@ Consul (you + frontier model, main conversation)
 
 Two adversarial layers by design: **Cato** (internal standing skeptic) and the **Envoy** (external, different model family, targets aggregate agreement). No Codex installed? The Envoy degrades to a Claude devil and the verdict says so.
 
+**The Collegium** (edit `collegium.yaml`): when the request is a thing to design or heal rather than a choice, the Consul summons a master instead —
+
+| Magister | Craft |
+|---|---|
+| Vitruvius | architecture of the new — buildable plans |
+| Archimedes | mathematics & mechanism — algorithms, performance, feasibility |
+| Galen | diagnosis of the broken — root cause, minimal cure |
+
 ## Principles
 
 - **Reading is the cost.** The Consul reads once and distills; senators get the brief, not the world (≤2 targeted verification reads each). Cheap models for the many, frontier for the few.
 - **Roles conflict, not complement.** A bench of honest extremists maps a decision better than one balanced mind.
 - **Non-averaging merge.** Agreement across opposed biases = granite. Named conflict = signal. Lone dissent can be the whole point.
 - **Read-only.** The Senate deliberates; it never edits, deletes, or deploys. Acting on a verdict is your separate decision.
-- **The Senate commands the Legions.** Pass it build work by mistake ("fix this bug") and the Consul hands off to your installed `/bug` or `/feature` skills — `⚔️ The Senate sends the Legions`. A decision *about* a bug ("fix now or defer?") stays on the floor.
+- **Not a decision? The Collegium.** Ask for something new or something broken and the Consul summons a master instead of the bench: **Vitruvius** drafts the buildable plan, **Archimedes** solves the mechanism, **Galen** convicts the root cause. Still read-only — plans and diagnoses, never edits. A contested plan goes straight back to the Senate floor, where the senators attack it.
 - **Untrusted text is data** (the Praetorian rule): briefs, quoted files, and Envoy output can inform — never command.
 
 ## Install
@@ -53,8 +61,8 @@ Requires Claude Code. Optional: [Codex CLI](https://github.com/openai/codex) + `
 
 ## Repo map
 
-- `agents/senator.md` — one generic read-only senator agent (personas are roster rows, not agent files)
-- `skills/senate/` — the Consul workflow + `roster.yaml` (+ repo-only `EVALUATION.yaml`)
+- `agents/senator.md`, `agents/magister.md` — two generic read-only agents (personas are data rows, not agent files)
+- `skills/senate/` — the Consul workflow + `roster.yaml` (the bench) + `collegium.yaml` (the masters) (+ repo-only `EVALUATION.yaml`)
 - `MODEL-POLICY.md` — role→model bindings, upgrade discipline
 - `EVALS.md` — per-role eval scenarios (upgrade only on evidence)
 - `LORE.md` — the Roman world, human-facing (never loaded at runtime)

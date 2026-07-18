@@ -5,7 +5,7 @@
 **Companion:** `DESIGN-CHECKPOINT.md` (the grilling trail, decisions Q1–Q10).
 
 > **Home change (supersedes Q1):** the design was originally specced as an
-> extension of `escapemanuele orchestration`. Decision 2026-07-18: split into
+> extension of the parent code-orchestration system (private). Decision 2026-07-18: split into
 > its own repo. The Senate is self-contained (senator agent + senate skill +
 > roster); the Codex Envoy comes from the global `codex` plugin, not the
 > orchestration repo; the MODEL-POLICY/EVALS/install discipline is *copied as a
@@ -15,13 +15,19 @@
 
 > **Command rename (2026-07-18, same day):** `/decide` → `/senate`. The command
 > IS the brand; skill dir is `skills/senate/`, installed at
-> `~/.claude/skills/senate/`. Added with the rename: a **Legions handoff** —
-> if the request is build/fix work rather than a decision, the Consul detects
-> orchestration's installed `/bug`//`/feature` SKILL.md files and executes
-> their workflow as lead (they can't be model-invoked; their instructions are
-> carried out directly), announcing `⚔️ The Senate sends the Legions`. Absent →
-> recommend installing orchestration. Decisions ABOUT bugs/features stay in the
-> Senate.
+> `~/.claude/skills/senate/`.
+
+> **The Collegium (2026-07-18, same day — supersedes the short-lived "Legions
+> handoff"):** the Senate must be fully standalone, operable where no other
+> skills exist, and must not reference any external system. Build/fix requests
+> therefore stay in-world: the Consul summons a **magister** from the
+> **Collegium** (`collegium.yaml` data rows `{name, craft, method}` — Vitruvius:
+> architecture of the new; Archimedes: mathematics & mechanism; Galen: diagnosis
+> of the broken). One generic read-only `magister` agent (Read/Grep/Glob,
+> fable/high — the "frontier few" tier), reads what the craft requires, returns
+> a bounded PLAN or DIAGNOSIS, never edits. A contested plan is put before the
+> Senate (full workflow with the plan as brief). Decisions ABOUT bugs/features
+> stay bench business from the start.
 
 ---
 
@@ -42,7 +48,7 @@ Non-goals for v1 are listed in §13.
   code-side patterns except 3 transferable ideas, all adopted here.
 - **stencil.so/blog/prewalk** — "reading is the cost"; frontier→cheap handoff.
   Principle adopted as token-budget rules (§10); literal handoff deferred.
-- **`escapemanuele orchestration`** — the parent discipline: star topology,
+- **the parent code-orchestration system (private)** — the parent discipline: star topology,
   MODEL-POLICY, EVALS, read-only-via-allowlist, `install.sh`, Codex
   cross-family reviewer in `/review`. Copied as pattern into this repo.
 
@@ -66,7 +72,7 @@ Non-goals for v1 are listed in §13.
 | Organ | Piece | Status |
 |---|---|---|
 | **The Senate** | `/senate` | **this repo, v1** |
-| **The Legions** | `/feature`, `/bug` | lives in `escapemanuele orchestration`; lore reference only |
+| **The Legions** | `/feature`, `/bug` | lives in the parent code-orchestration system (private); lore reference only |
 | **The Censors** | `/review` | same |
 | **The Scouts** | `code-explorer` agent | same |
 | **The Praetorians** | input-hygiene rule (v1); action-gating (future) | rule shipped in senator + Consul prompts |
@@ -184,7 +190,7 @@ Non-averaging synthesis. "Sober, do not average" instruction
 ## 7. ~~Reskin of existing organs~~ — dropped with the split
 The cosmetic reskin of `/feature`, `/bug`, `/review` (Legions/Censors announce
 lines) belonged to the orchestration repo and is out of scope here. If ever
-done, it happens in `escapemanuele orchestration` as its own change. LORE.md
+done, it happens in the parent code-orchestration system (private) as its own change. LORE.md
 keeps the world map as narrative only.
 
 ## 8. Praetorians — input-hygiene guard (v1)
@@ -259,8 +265,10 @@ user name the target.
 ## 14. File manifest (this repo)
 ```
 agents/senator.md                 generic read-only expert
+agents/magister.md                generic read-only master (Collegium — plans/diagnoses)
 skills/senate/SKILL.md            Consul workflow (the /senate lead)
 skills/senate/roster.yaml         standing bench data (travels with skill, §6.2)
+skills/senate/collegium.yaml      Collegium masters data (Vitruvius, Archimedes, Galen)
 skills/senate/EVALUATION.yaml     skill eval (repo-only, not installed)
 MODEL-POLICY.md                   consul/senator/envoy bindings + rules + history
 EVALS.md                          senator + /senate eval scenarios

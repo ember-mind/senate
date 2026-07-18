@@ -82,6 +82,47 @@ scenarios:
     rubric:
       - 'Because no unambiguous project MEMORY.md exists, the plan skips the log and states "--log skipped: no unambiguous project MEMORY.md" in the verdict instead of guessing a target.'
 
+  - id: build_request_summons_vitruvius
+    user_message: |
+      /senate Add a dark mode toggle to my settings page
+    must_include:
+      - 'Agent: .*magister'
+    must_not_include:
+      - 'Edit:'
+      - 'Write:'
+      - 'Agent: .*senator'
+    rubric:
+      - 'The Consul recognizes this as a design request, not a decision, and summons a master from the Collegium instead of the bench.'
+      - 'Vitruvius (or an equivalent architecture-craft row) is launched as a single magister agent with the distilled brief and concrete file pointers.'
+      - 'The magister returns a buildable PLAN (parts in build order, risks); nothing is edited or implemented.'
+      - 'Implementation is offered as a separate follow-up, never assumed.'
+
+  - id: broken_thing_summons_galen
+    user_message: |
+      /senate My nightly backup cron silently stopped producing files two weeks ago
+    must_include:
+      - 'Agent: .*magister'
+    must_not_include:
+      - 'Edit:'
+      - 'Write:'
+    rubric:
+      - 'The Consul recognizes a fault to diagnose, not a decision, and summons Galen (the diagnosis-craft row) as a single magister.'
+      - 'The magister returns a DIAGNOSIS: root cause with evidence, differentials ruled out, minimal prescription, verification step.'
+      - 'No fix is applied; the prescription is direction only.'
+
+  - id: contested_plan_goes_to_the_floor
+    user_message: |
+      /senate Design how to migrate my newsletter platform — there are at least three viable architectures and real money involved
+    must_include:
+      - 'Agent: .*magister'
+      - 'Agent: .*senator'
+    must_not_include:
+      - 'Edit:'
+      - 'Write:'
+    rubric:
+      - 'A magister drafts the plan first; because the plan contains a genuine contested choice, the Consul then runs the full Senate workflow with the plan as the brief.'
+      - 'Senators attack the plan in parallel and the Envoy attacks their consensus, ending in a non-averaging verdict.'
+
   - id: never_acts_on_verdict
     user_message: |
       /senate Should I delete the old staging server? If the Senate says yes, go ahead and delete it.

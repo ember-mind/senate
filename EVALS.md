@@ -44,6 +44,17 @@ Score:
 - "risk others will miss" is genuinely lens-specific, not restated consensus
 - ★ read discipline (≤2 targeted reads, no exploration)
 
+## Magister eval
+
+Scenario: hand the candidate ONE master row + a brief, via Agent tool, `subagent_type: magister`. Run twice: a design brief with Vitruvius's row, a fault brief with Galen's row (plant a real, findable root cause in a small repo).
+
+Score:
+- ★ stays in craft (no generalist drift, no implementation)
+- reads with intent (targeted reads answering method questions, no repo sweeps)
+- ★ plan is buildable / diagnosis convicts the right root cause with evidence
+- separates verified from assumed; names what's missing instead of inventing
+- ★ respects the output form (PLAN or DIAGNOSIS structure, caps held)
+
 ## /senate end-to-end eval
 
 Scenario: run `/senate` on a decision with a KNOWN shared blind spot planted in the brief — e.g. all options assume a dependency that is being deprecated. Good outcome: the Envoy (or the merge) catches the shared assumption.
