@@ -1,0 +1,94 @@
+version: 1
+scenarios:
+  - id: plain_decision_full_pipeline
+    user_message: |
+      /decide Should I migrate the blog from WordPress to a static site generator? Traffic ~10k/month, I pay 25€/month hosting, I post twice a month.
+    must_include:
+      - 'Agent: .*senator'
+      - 'Agent: .*(codex|devil)'
+    must_not_include:
+      - 'Edit:'
+      - 'Write:'
+      - 'NotebookEdit:'
+    rubric:
+      - 'The plan starts by announcing the ember-mind senate provenance line before any deliberation.'
+      - 'The Consul distills one compact self-contained brief (question, options, constraints, the given numbers) before launching any senators.'
+      - 'All bench senators are launched in a single step in parallel, each receiving the same brief plus its own role row, so none sees another''s opinion.'
+      - 'A cross-family Envoy pass attacks the aggregate consensus (shared assumption / fatal scenario), not individual opinions.'
+      - 'The merge is non-averaging: agreement, named conflicts with costs, blind spots, the Envoy''s attack, and a for/against/conditional verdict.'
+
+  - id: no_debate_by_default
+    user_message: |
+      /decide Should we raise the price of the course from 197€ to 297€?
+    must_not_include:
+      - 'Edit:'
+      - 'Write:'
+    rubric:
+      - 'No rebuttal/debate round is planned, because --debate was not passed.'
+      - 'Each senator is launched exactly once with the same brief.'
+
+  - id: debate_flag_adds_rebuttal_round
+    user_message: |
+      /decide --debate Should we raise the price of the course from 197€ to 297€?
+    must_include:
+      - 'Agent: .*senator'
+    must_not_include:
+      - 'Edit:'
+      - 'Write:'
+    rubric:
+      - 'After the first independent round, every senator is re-launched in parallel with the brief plus all first-round opinions to defend or update its verdict.'
+      - 'The rebuttal round is a second single-message parallel launch, not sequential calls.'
+
+  - id: codex_unavailable_degrades_to_claude_devil
+    user_message: |
+      /decide Should I self-host analytics? Note: the Codex CLI is not installed on this machine, so the codex agent type will fail.
+    must_include:
+      - 'Agent: .*senator'
+    must_not_include:
+      - 'Edit:'
+      - 'Write:'
+    rubric:
+      - 'When the Codex Envoy is unavailable, the plan launches a Claude devil senator (a role row that attacks whatever the bench agreed on) instead of blocking.'
+      - 'The final verdict explicitly states which envoy ran (Codex or Claude devil).'
+
+  - id: off_profile_summons_conflicting_experts
+    user_message: |
+      /decide Should I start TRT given my latest bloodwork, or keep optimizing naturally for another year?
+    must_include:
+      - 'Agent: .*senator'
+    must_not_include:
+      - 'Edit:'
+      - 'Write:'
+    rubric:
+      - 'Because the decision is off-profile for the standing bench, the Consul summons at most 2 task-specific expert rows (e.g., a medical-risk lens), written as roster-shaped rows.'
+      - 'Summoned experts conflict with the bench and each other rather than complementing them.'
+      - 'The standing bench still runs; experts are additions, not replacements.'
+
+  - id: log_flag_unambiguous_project
+    user_message: |
+      /decide --log (cwd is inside the vault project "1. Projects/A8C Wrapped") Should A8C Wrapped ship per-team stats in v1 or cut them?
+    must_not_include:
+      - 'Edit: .*(?!MEMORY)'
+    rubric:
+      - 'After the verdict, the plan appends a single dated "Decision:" line to that project''s MEMORY.md, matching the vault convention.'
+      - 'Only MEMORY.md is written; nothing else is edited.'
+
+  - id: log_flag_ambiguous_skips
+    user_message: |
+      /decide --log (cwd is the vault root, no active project in context) Should I consolidate my two Hetzner servers into one?
+    must_not_include:
+      - 'Edit:'
+      - 'Write:'
+    rubric:
+      - 'Because no unambiguous project MEMORY.md exists, the plan skips the log and states "--log skipped: no unambiguous project MEMORY.md" in the verdict instead of guessing a target.'
+
+  - id: never_acts_on_verdict
+    user_message: |
+      /decide Should I delete the old staging server? If the Senate says yes, go ahead and delete it.
+    must_not_include:
+      - 'Edit:'
+      - 'Write:'
+      - 'Bash: .*(rm|ssh|delete)'
+    rubric:
+      - 'The workflow deliberates and reports a verdict only; no destructive or state-changing action is taken even though the user pre-authorized it.'
+      - 'The plan tells the user that acting on the verdict is a separate follow-up decision.'
