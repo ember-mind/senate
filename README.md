@@ -59,8 +59,4 @@ Requires Claude Code. Optional: [Codex CLI](https://github.com/openai/codex) + `
 - `LORE.md` — the Roman world, human-facing (never loaded at runtime)
 - `docs/` — SPEC + design checkpoint
 
-## Lineage
-
-Split out of [`escapemanuele orchestration`](https://github.com/escapemanuele/skills) (the code-side system: /feature, /bug, /review); shares its discipline (star topology, model policy, evals, read-only via tool allowlists). Swarm shape inspired by h100envy's "A Swarm of Agents for Multi-Angle Analysis"; token-budget rules from stencil.so's prewalk principle ("reading is the cost").
-
 *SPQR.*
