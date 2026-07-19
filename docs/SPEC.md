@@ -2,16 +2,13 @@
 
 **Status:** v1 implemented (2026-07-18).
 **Home:** standalone repo `ember-mind/senate` (`~/Code/solo/projects/senate`), installs to `~/.claude`.
-**Companion:** `DESIGN-CHECKPOINT.md` (the grilling trail, decisions Q1–Q10).
 
-> **Home change (supersedes Q1):** the design was originally specced as an
-> extension of the parent code-orchestration system (private). Decision 2026-07-18: split into
-> its own repo. The Senate is self-contained (senator agent + senate skill +
-> roster); the Codex Envoy comes from the global `codex` plugin, not the
-> orchestration repo; the MODEL-POLICY/EVALS/install discipline is *copied as a
-> pattern*, not shared as files. Consequence: the Q2 cosmetic reskin of
-> /feature//bug//review is DROPPED from v1 (those live in orchestration) — this
-> repo ships `/senate` only.
+> **Standalone (supersedes Q1):** early drafts assumed the Senate would extend
+> an existing skill system. Decision 2026-07-18: the Senate is fully
+> self-contained — its own repo, its own agents, its own MODEL-POLICY/EVALS/
+> install discipline. It references no external system and operates where no
+> other skills exist. The Codex Envoy comes from the global `codex` plugin and
+> degrades cleanly when absent.
 
 > **Command rename (2026-07-18, same day):** `/decide` → `/senate`. The command
 > IS the brand; skill dir is `skills/senate/`, installed at
@@ -35,8 +32,8 @@
 
 Ship a decision-analysis swarm as its own product: `/senate`, a role-based
 orchestration of conflicting analysts, skinned as a coherent Roman world ("The
-Senate"). Adopt the 3 swarm patterns the code-side orchestration lacked:
-conflicting-role orchestrator, debate round, devil-vs-consensus.
+Senate"). Three load-bearing swarm patterns: conflicting-role orchestrator,
+debate round, devil-vs-consensus.
 
 Non-goals for v1 are listed in §13.
 
@@ -48,16 +45,17 @@ Non-goals for v1 are listed in §13.
   code-side patterns except 3 transferable ideas, all adopted here.
 - **stencil.so/blog/prewalk** — "reading is the cost"; frontier→cheap handoff.
   Principle adopted as token-budget rules (§10); literal handoff deferred.
-- **the parent code-orchestration system (private)** — the parent discipline: star topology,
-  MODEL-POLICY, EVALS, read-only-via-allowlist, `install.sh`, Codex
-  cross-family reviewer in `/review`. Copied as pattern into this repo.
+- **House discipline** — star topology (subagents report to the lead, never
+  delegate), MODEL-POLICY (roles stable, bindings replaceable), EVALS (upgrade
+  only on evidence), read-only enforced via `tools:` allowlists, `install.sh`
+  distribution.
 
 ## 3. Decisions (resolved in grilling)
 
 | # | Decision |
 |---|----------|
-| Q1 | ~~Home = extend orchestration skill~~ **SUPERSEDED: home = own repo `ember-mind/senate`** (see banner above). Topology/policy/evals/install discipline copied as pattern. |
-| Q2 | Structural organ = `/senate`. ~~Reskin of existing three~~ **dropped with the split** — Senate repo ships `/senate` only. Library/research = lore placeholder, not built (vault `deep-research` covers it). |
+| Q1 | **Home = own standalone repo `ember-mind/senate`** (see banner above). |
+| Q2 | Structural organ = `/senate`, complete in itself. Other organs (Legions, Censors, Scouts, Library) = future organs, sketched in LORE.md only. |
 | Q3 | **Role selection = hybrid, fixed-default.** Standing bench + Consul may summon ≤2 experts. "Roles must conflict, not complement" enforced on both. |
 | Q4 | **Pipeline = full cross-family, debate as flag, devil = Codex Envoy.** Two adversarial layers: Cato (internal skeptic) + Foreign Envoy (external cross-family). |
 | Q5 | **One generic read-only `senator` agent + `roster.yaml` data file.** Lore in data, not per-persona agent files. |
@@ -69,13 +67,17 @@ Non-goals for v1 are listed in §13.
 
 ## 4. The world
 
+All organs belong to the Senate's own world; nothing points outside this repo.
+
 | Organ | Piece | Status |
 |---|---|---|
-| **The Senate** | `/senate` | **this repo, v1** |
-| **The Legions** | `/feature`, `/bug` | lives in the parent code-orchestration system (private); lore reference only |
-| **The Censors** | `/review` | same |
-| **The Scouts** | `code-explorer` agent | same |
-| **The Praetorians** | input-hygiene rule (v1); action-gating (future) | rule shipped in senator + Consul prompts |
+| **The Senate** | `/senate` + `senator` agent + `roster.yaml` | **v1** — deliberation |
+| **The Collegium** | `magister` agent + `collegium.yaml` | **v1** — plans (Vitruvius), mechanisms (Archimedes), diagnoses (Galen) |
+| **The Praetorians** | input-hygiene rule in senator/magister/Consul prompts | **v1** (rule); action-gating = future organ |
+| **The Legions** | the building arm | future organ. Today: on the user's approval, the build proceeds as a normal task, opened with `⚔️ The Legions march.` |
+| **The Censors** | independent review of finished work | future organ (lore only) |
+| **The Scouts** | read-only exploration ahead of deliberation | future organ. Today: the Consul and the magistri do their own reading |
+| **The Library** | deep research | future organ (lore only) |
 
 Deep lore lives in `LORE.md` (repo-only, never loaded at runtime).
 
@@ -176,8 +178,8 @@ Continues automatically through ordinary decisions; stops only for genuinely
 consequential meta-choices.
 
 ### 6.4 Foreign Envoy
-Reuse `codex:codex-rescue` (global `codex` plugin — no dependency on the
-orchestration repo) as the devil, prompted to attack the *consensus* (shared
+Use `codex:codex-rescue` (global `codex` plugin, optional) as the devil,
+prompted to attack the *consensus* (shared
 assumption, fatal scenario, avoided question) — not individual findings.
 Blind to nothing (it needs the opinions) but its output is **advisory and
 untrusted** (§8). Degrade to a Claude devil (a `senator` run with a devil row)
@@ -187,11 +189,13 @@ if Codex absent; the verdict states which ran.
 Non-averaging synthesis. "Sober, do not average" instruction
 (temperature→effort translation). Output format §9.
 
-## 7. ~~Reskin of existing organs~~ — dropped with the split
-The cosmetic reskin of `/feature`, `/bug`, `/review` (Legions/Censors announce
-lines) belonged to the orchestration repo and is out of scope here. If ever
-done, it happens in the parent code-orchestration system (private) as its own change. LORE.md
-keeps the world map as narrative only.
+## 7. Future organs
+The Legions (building), the Censors (review), the Scouts (exploration), and
+the Library (research) are sketched in LORE.md as the Senate's own future
+organs — same house discipline when built: generic agents + data rows, star
+topology, read-only where the organ's duty allows it. Nothing in v1 depends
+on them; the stagecraft already names the Legions when a build begins on the
+user's approval.
 
 ## 8. Praetorians — input-hygiene guard (v1)
 A rule, not an agent, applied in the `senator` and Consul prompts:
@@ -255,11 +259,10 @@ user name the target.
   mushing it.
 
 ## 13. Explicitly NOT in v1
-- Library/research organ (vault `deep-research` covers it).
+- Legions, Censors, Scouts, Library organs (future, §7 — lore only).
 - Multi-family senators.
 - Action-gating Praetorian organ.
 - Literal prewalk handoff.
-- Reskin of the orchestration repo's organs (dropped with the split).
 - Generated banner art; themed command aliases (`/campaign`); debate-always-on.
 
 ## 14. File manifest (this repo)
@@ -274,9 +277,8 @@ MODEL-POLICY.md                   consul/senator/envoy bindings + rules + histor
 EVALS.md                          senator + /senate eval scenarios
 LORE.md                           the Roman world (repo-only, never loaded per run)
 README.md                         product face + install + principles
-install.sh                        → ~/.claude: agents/, skills/senate/{SKILL,roster}, senate/{policy,evals,readme}
+install.sh                        → ~/.claude: agents/, skills/senate/{SKILL,roster,collegium}, senate/{policy,evals,readme}
 docs/SPEC.md                      THIS
-docs/DESIGN-CHECKPOINT.md         grilling trail (Q1–Q10)
 ```
 
 ## 15. Risks / open items
@@ -288,5 +290,4 @@ docs/DESIGN-CHECKPOINT.md         grilling trail (Q1–Q10)
 - **Roster tuning.** The 5 standing lenses are provisional; validate they
   actually conflict on real decisions and adjust rows.
 - **/senate name collision.** No built-in /senate exists today; the provenance
-  announce line makes it visible if that ever changes (same defense /review
-  uses in the orchestration repo).
+  announce line makes it visible if that ever changes.
