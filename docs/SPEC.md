@@ -69,7 +69,7 @@ agents/senator.md        deliberation lens (sonnet/medium — the cheap many)
 agents/magister.md       plans & diagnoses (opus/high — the craft tier)
 agents/librarian.md      cited research (sonnet/medium)
 agents/censor.md         independent review (opus/high — the craft tier)
-agents/explorator.md     reconnaissance (sonnet/medium)
+agents/explorator.md     reconnaissance (haiku/medium — the readers tier)
 agents/legionary.md      bounded implementation (sonnet/high)
 skills/senate/SKILL.md   the Consul (fable/xhigh) — routing, pipeline, stagecraft
 skills/senate/roster.yaml      the bench

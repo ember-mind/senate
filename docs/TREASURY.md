@@ -6,7 +6,8 @@
 
 | Tier | Who | Model | Why |
 |---|---|---|---|
-| **The cheap many** | senators (×5–7), scouts, legionaries, librarians | `sonnet` | Parallel single-lens work. A senator needs to hold one hard bias, not be a genius; the merge corrects for depth. |
+| **The readers** | scouts (explorator) | `haiku` | Faithful retrieval, zero judgment: report the terrain, don't vote. Reading needs no great mind. |
+| **The cheap many** | senators (×5–7), legionaries, librarians | `sonnet` | Work that takes a position or changes something: a hard lens held without hedging, a minimal diff, a synthesis that refuses to average disagreements. |
 | **The craft tier** | magistri, censors | `opus` | Near-frontier quality at half frontier price — Opus-tier models are explicitly strong on planning, knowledge work, and code review. One call per request. |
 | **The frontier one** | Consul (distill + merge) | `fable`, xhigh effort | The supreme figure always reasons at the top level. Every run passes through it — the brief and the verdict are frontier work, and its cost is largely paid anyway (it IS the main conversation). |
 | **The foreigner** | Envoy | Codex (cross-family) | Uncorrelated blind spots. Billed on the other empire's ledger. |

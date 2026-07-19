@@ -54,9 +54,9 @@ One master per request (the "craft" tier) — near-frontier quality at half fron
 
 ## Explorator (Scout)
 
-Needs: strong navigation, high recall, accurate terrain reports, speed and low cost.
+Needs: strong navigation, high recall, accurate terrain reports, speed and low cost. NO judgment — the explorator reports terrain, it does not vote (its own prompt forbids opinions), which is exactly the profile of a retrieval-tier model.
 
-Current model: `sonnet`, medium reasoning/effort. Bound in: `~/.claude/agents/explorator.md`
+Current model: `haiku`, medium reasoning/effort. Bound in: `~/.claude/agents/explorator.md`
 
 ## Censor
 
@@ -100,6 +100,7 @@ Bound in: `~/.claude/skills/senate/SKILL.md` (workflow step 6). Optional by desi
 
 ## Binding history
 
+- 2026-07-19 — Explorator moved sonnet→haiku: faithful retrieval needs no judgment tier (the tier criterion: judgment/synthesis → sonnet+, faithful reading/mapping → haiku). Demote on the same rule only when a role's output is reportage, not position.
 - 2026-07-19 — Consul raised to fable/xhigh: the supreme figure always reasons at the top level (xhigh, not max — max is prone to overthinking on agentic work).
 - 2026-07-19 — Craft tier introduced: magister and censor moved fable→opus (near-frontier quality at half price; frontier reserved for the Consul's judgment). Treasury decision.
 - 2026-07-18 — Four organs shipped: explorator=sonnet/medium, censor=fable/high, legionary=sonnet/high, librarian=sonnet/medium.
