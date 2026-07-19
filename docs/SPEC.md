@@ -43,9 +43,10 @@ Next step (who marches on approval). Full routing and stagecraft:
 ## Principles
 
 1. **Reading is the cost.** The Consul distills once; the same brief goes to
-   every senator. Cheap models for the many (senators, scouts, legionaries,
-   librarians), frontier for the few (Consul, magistri, censors). Debate is
-   the re-read tax — off by default.
+   every senator. Four tiers: readers on haiku (scouts), the cheap many on
+   sonnet (senators, legionaries, librarians), craft on opus (magistri,
+   censors), and the frontier only where judgment is supreme (the Consul,
+   fable/xhigh). Debate is the re-read tax — off by default.
 2. **Roles conflict, not complement.** The bench maps a decision by honest
    extremism; the merge never averages. Two adversarial layers: Cato inside,
    the Envoy outside — the Envoy targets what the whole bench agrees on,
