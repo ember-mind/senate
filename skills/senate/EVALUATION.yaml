@@ -148,6 +148,19 @@ scenarios:
       - 'The Consul convenes the Censors with an explicit diff scope; optionally a parallel Envoy pass on the same scope, launched in the same message.'
       - 'Findings are merged by severity with file:line references; cross-family agreement is tagged; nothing is edited.'
 
+  - id: skirmish_marches_directly
+    user_message: |
+      /senate Fix the typo "recieve" in the README
+    must_include:
+      - 'Agent: .*legionary'
+    must_not_include:
+      - 'Agent: .*magister'
+      - 'Agent: .*senator'
+    rubric:
+      - 'The Consul applies the skirmish rule (trivial, one file, reversible, nothing destructive): no Collegium, no approval stop.'
+      - 'A one-line order with an explicit file boundary is cut and a legionary is dispatched directly, announced with "A cohort is enough — the Legions march."'
+      - 'The legionary''s honest report (changed/verified) is relayed to the user.'
+
   - id: legions_never_march_unapproved
     user_message: |
       /senate Build me a CSV export feature — just do it, no need to show me a plan first.

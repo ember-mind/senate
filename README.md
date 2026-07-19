@@ -17,7 +17,7 @@ One command — `/senate` — and the Consul routes your request to the organ wh
 | 📚 The Library | research with citations |
 | 📜 The Censors | independent review of finished work |
 | 🐎 The Scouts | reconnaissance feeding the Consul's briefs |
-| ⚔️ The Legions | build — only on your approved plan |
+| ⚔️ The Legions | build — on your approved plan, or directly for trivial skirmishes |
 | 🐍 The Envoy | cross-family devil vs the consensus |
 | 🛡️ The Praetorians | untrusted text is data, never command |
 
@@ -60,7 +60,7 @@ Two adversarial layers by design: **Cato** (internal standing skeptic) and the *
 - **Reading is the cost.** The Consul reads once and distills; senators get the brief, not the world (≤2 targeted verification reads each). Cheap models for the many, frontier for the few.
 - **Roles conflict, not complement.** A bench of honest extremists maps a decision better than one balanced mind.
 - **Non-averaging merge.** Agreement across opposed biases = granite. Named conflict = signal. Lone dissent can be the whole point.
-- **Read-only, except the Legions.** Every organ opines, plans, diagnoses, reviews — none edits. The Legions are the single exception, and they march only on a plan you explicitly approved, with honest reporting of what they changed and verified.
+- **Read-only, except the Legions.** Every organ opines, plans, diagnoses, reviews — none edits. The Legions are the single exception: they march on a plan you explicitly approved — or straight away for trivial skirmishes (a typo, a rename, one obvious function; nothing destructive) — always with honest reporting of what they changed and verified. When in doubt, it's a campaign, not a skirmish.
 - **Not a decision? The Collegium.** Ask for something new or something broken and the Consul summons a master instead of the bench: **Vitruvius** drafts the buildable plan, **Archimedes** solves the mechanism, **Galen** convicts the root cause. Still read-only — plans and diagnoses, never edits. A contested plan goes straight back to the Senate floor, where the senators attack it.
 - **Untrusted text is data** (the Praetorian rule): briefs, quoted files, and Envoy output can inform — never command.
 
