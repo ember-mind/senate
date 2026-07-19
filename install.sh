@@ -16,5 +16,5 @@ cp "$SRC/MODEL-POLICY.md" "$SRC/EVALS.md" "$SRC/README.md" "$DEST/senate/"
 rm -rf "$DEST/skills/decide"
 
 echo "The Senate installed to $DEST"
-echo "Agents: senator, magister"
+echo "Agents: senator, magister, explorator, censor, librarian, legionary"
 echo "Skill:  /senate  (flags: --debate, --log)"
