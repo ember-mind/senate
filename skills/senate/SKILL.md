@@ -64,19 +64,19 @@ Every phase gets ONE announce line, output as a blockquote at the moment it happ
 
 Never invent extra ceremony between these lines; never let ceremony leak into senator prompts, briefs, or the analysis itself.
 
-**The muster roll — name every agent you dispatch.** Always pass `name:` on the Agent call (no spaces — use hyphens):
+**The muster roll — name every agent you dispatch.** Always pass `name:` on the Agent call, as `<roman-name>-<task-slug>`: the Roman name from the table plus a 1–2 word kebab-case slug of the mission, so the roster reads at a glance (`callimachus-creatine`, `vitruvius-darkmode`, `Legio-X-Fretensis-csv-export`). No spaces, ≤64 chars, keep the slug short.
 
-| Agent | Name to pass |
+| Agent | Roman name |
 |---|---|
-| senator | the row's name, lowercase: `quaestor`, `legatus`, `tribunus-plebis`, `augur`, `cato` (summoned expert: its row name) |
+| senator | the row's name, lowercase: `quaestor`, `legatus`, `tribunus-plebis`, `augur`, `cato` (summoned expert: its row name). Slug = the decision, e.g. `quaestor-ghost-migration` |
 | magister | the master's name: `vitruvius`, `archimedes`, `galen` |
-| explorator | `exploratores` (multiple scouts: `exploratores-I`, `exploratores-II`) |
-| censor | `appius-claudius` (the great censor; second censor on a large review: `plautius`) |
+| explorator | `exploratores` (multiple: `exploratores-I-<slug>`, `exploratores-II-<slug>`) |
+| censor | `appius-claudius` (second censor on a large review: `plautius`) |
 | librarian | `callimachus` (the librarian of Alexandria) |
 | legionary | a legion, in dispatch order: `Legio-X-Fretensis`, `Legio-XIII-Gemina`, `Legio-VI-Ferrata`, `Legio-II-Augusta`, `Legio-V-Macedonica`, `Legio-XIV-Gemina` |
 | Envoy (codex) | `the-envoy` |
 
-A soldier with a number instead of a name has no honor to defend.
+A soldier with a number instead of a name has no honor to defend — and a name without a mission tells the forum nothing.
 
 ## The Collegium — design and diagnosis
 
