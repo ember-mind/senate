@@ -66,7 +66,7 @@ Two adversarial layers by design: **Cato** (internal standing skeptic) and the *
 
 ## 💰 The Treasury
 
-Right model for the right duty: **the cheap many** (senators, scouts, legionaries, librarians → sonnet) and **the frontier few** (Consul, magistri, censors → fable). On a real benchmarked decision run, right-sizing the bench cut the swarm's cost by **~60%** vs running everything on the frontier model — while the cross-family Envoy (a rounding error on the bill) caught the blind spot no single-model pass produced. Numbers and rules: [`docs/TREASURY.md`](docs/TREASURY.md).
+Right model for the right duty: **the cheap many** (senators, scouts, legionaries, librarians → sonnet), **the craft tier** (magistri, censors → opus: near-frontier at half price), and **the frontier one** (the Consul — the session model you already pay for). On a real benchmarked decision run, right-sizing the bench cut the swarm's cost by **~60%** vs running everything on the frontier model — while the cross-family Envoy (a rounding error on the bill) caught the blind spot no single-model pass produced. Numbers and rules: [`docs/TREASURY.md`](docs/TREASURY.md).
 
 ## Install
 

@@ -66,12 +66,12 @@ Next step (who marches on approval). Full routing and stagecraft:
 
 ```
 agents/senator.md        deliberation lens (sonnet/medium — the cheap many)
-agents/magister.md       plans & diagnoses (fable/high — the frontier few)
+agents/magister.md       plans & diagnoses (opus/high — the craft tier)
 agents/librarian.md      cited research (sonnet/medium)
-agents/censor.md         independent review (fable/high)
+agents/censor.md         independent review (opus/high — the craft tier)
 agents/explorator.md     reconnaissance (sonnet/medium)
 agents/legionary.md      bounded implementation (sonnet/high)
-skills/senate/SKILL.md   the Consul (fable/high) — routing, pipeline, stagecraft
+skills/senate/SKILL.md   the Consul (fable/xhigh) — routing, pipeline, stagecraft
 skills/senate/roster.yaml      the bench
 skills/senate/collegium.yaml   the masters
 skills/senate/EVALUATION.yaml  skill eval (repo-only)

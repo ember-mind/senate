@@ -18,7 +18,7 @@ Needs:
 
 Current model:
 - `fable`
-- high reasoning/effort
+- xhigh reasoning/effort — the Consul is the supreme figure and always reasons at the top level; frontier is never delegated away from the final judgment
 
 Bound in: `~/.claude/skills/senate/SKILL.md`
 
@@ -45,12 +45,12 @@ Needs:
 - bounded, structured plans/diagnoses
 
 Current model:
-- `fable`
+- `opus`
 - high reasoning/effort
 
 Bound in: `~/.claude/agents/magister.md`
 
-One master per request (the "frontier few" tier) — craft quality over cost; the plan is what the user acts on. Personas (Vitruvius, Archimedes, Galen) are data rows in `collegium.yaml`, not per-persona agents or bindings.
+One master per request (the "craft" tier) — near-frontier quality at half frontier price; Opus-tier models are explicitly strong on agentic and knowledge work. Personas (Vitruvius, Archimedes, Galen) are data rows in `collegium.yaml`, not per-persona agents or bindings.
 
 ## Explorator (Scout)
 
@@ -62,7 +62,7 @@ Current model: `sonnet`, medium reasoning/effort. Bound in: `~/.claude/agents/ex
 
 Needs: independence, adversarial reasoning, bug detection, low false-positive rate.
 
-Current model: `fable`, high reasoning/effort. Bound in: `~/.claude/agents/censor.md`
+Current model: `opus`, high reasoning/effort. Bound in: `~/.claude/agents/censor.md` (Opus-tier models are explicitly strong on code review and bug-finding)
 
 ## Legionary
 
@@ -100,6 +100,8 @@ Bound in: `~/.claude/skills/senate/SKILL.md` (workflow step 6). Optional by desi
 
 ## Binding history
 
+- 2026-07-19 — Consul raised to fable/xhigh: the supreme figure always reasons at the top level (xhigh, not max — max is prone to overthinking on agentic work).
+- 2026-07-19 — Craft tier introduced: magister and censor moved fable→opus (near-frontier quality at half price; frontier reserved for the Consul's judgment). Treasury decision.
 - 2026-07-18 — Four organs shipped: explorator=sonnet/medium, censor=fable/high, legionary=sonnet/high, librarian=sonnet/medium.
 - 2026-07-18 — Command renamed `/decide` → `/senate`; skill dir `skills/decide/` → `skills/senate/`. Bindings unchanged; bound-in paths updated above.
 - 2026-07-18 — Collegium added: magister=fable/high (one master per request — the "frontier few" tier; craft quality over cost).

@@ -7,10 +7,11 @@
 | Tier | Who | Model | Why |
 |---|---|---|---|
 | **The cheap many** | senators (×5–7), scouts, legionaries, librarians | `sonnet` | Parallel single-lens work. A senator needs to hold one hard bias, not be a genius; the merge corrects for depth. |
-| **The frontier few** | Consul (distill + merge), magistri, censors | `fable` | One call per run, and it's the call the user acts on: judgment, synthesis, craft. |
+| **The craft tier** | magistri, censors | `opus` | Near-frontier quality at half frontier price — Opus-tier models are explicitly strong on planning, knowledge work, and code review. One call per request. |
+| **The frontier one** | Consul (distill + merge) | `fable`, xhigh effort | The supreme figure always reasons at the top level. Every run passes through it — the brief and the verdict are frontier work, and its cost is largely paid anyway (it IS the main conversation). |
 | **The foreigner** | Envoy | Codex (cross-family) | Uncorrelated blind spots. Billed on the other empire's ledger. |
 
-Pricing reference (per Mtok, 2026-07): fable $10 in / $50 out · sonnet $3/$15 · haiku $1/$5.
+Pricing reference (per Mtok, 2026-07): fable $10 in / $50 out · opus $5/$25 · sonnet $3/$15 · haiku $1/$5. Example: a magister plan at ~10k in / 3k out costs ~$0.12 on opus vs ~$0.25 on fable — halved, per Treasury decision 2026-07-19.
 
 ## Benchmark — one real decision run
 

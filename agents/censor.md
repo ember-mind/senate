@@ -2,7 +2,7 @@
 name: censor
 description: Independent read-only review of a diff, change set, or work product — correctness bugs, regressions, security/data-loss risks, missing tests, broken edge cases. Only convened by the /senate Consul with an explicit scope; do NOT use for general questions or implementation. Never edits.
 tools: Read, Grep, Glob, Bash
-model: fable
+model: opus
 effort: high
 ---
 

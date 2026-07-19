@@ -4,7 +4,7 @@ description: "[senate] Role-based orchestration, Roman world. The Consul routes 
 argument-hint: <the decision to deliberate> [--debate] [--log]
 disable-model-invocation: true
 model: fable
-effort: high
+effort: xhigh
 ---
 
 # /senate — Rome convenes
