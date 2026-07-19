@@ -52,6 +52,30 @@ Bound in: `~/.claude/agents/magister.md`
 
 One master per request (the "frontier few" tier) — craft quality over cost; the plan is what the user acts on. Personas (Vitruvius, Archimedes, Galen) are data rows in `collegium.yaml`, not per-persona agents or bindings.
 
+## Explorator (Scout)
+
+Needs: strong navigation, high recall, accurate terrain reports, speed and low cost.
+
+Current model: `sonnet`, medium reasoning/effort. Bound in: `~/.claude/agents/explorator.md`
+
+## Censor
+
+Needs: independence, adversarial reasoning, bug detection, low false-positive rate.
+
+Current model: `fable`, high reasoning/effort. Bound in: `~/.claude/agents/censor.md`
+
+## Legionary
+
+Needs: reliable editing, strict instruction adherence, minimal diffs, test awareness, honest reporting.
+
+Current model: `sonnet`, high reasoning/effort. Bound in: `~/.claude/agents/legionary.md`
+
+## Librarian
+
+Needs: multi-source synthesis, citation discipline, contested-vs-established separation, reasonable cost.
+
+Current model: `sonnet`, medium reasoning/effort. Bound in: `~/.claude/agents/librarian.md`
+
 ## Foreign Envoy (cross-family)
 
 Needs:
@@ -76,6 +100,7 @@ Bound in: `~/.claude/skills/senate/SKILL.md` (workflow step 6). Optional by desi
 
 ## Binding history
 
+- 2026-07-18 — Four organs shipped: explorator=sonnet/medium, censor=fable/high, legionary=sonnet/high, librarian=sonnet/medium.
 - 2026-07-18 — Command renamed `/decide` → `/senate`; skill dir `skills/decide/` → `skills/senate/`. Bindings unchanged; bound-in paths updated above.
 - 2026-07-18 — Collegium added: magister=fable/high (one master per request — the "frontier few" tier; craft quality over cost).
 - 2026-07-18 — Initial policy: consul=fable/high, senator=sonnet/medium, envoy=Codex via `codex:codex-rescue` (degrades to Claude devil).

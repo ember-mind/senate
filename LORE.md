@@ -42,14 +42,14 @@ The Consul does not count hands. Where opposing biases agree, that is granite �
 
 Rome does not average. Rome decides.
 
-## The wider world (future organs)
+## The wider world
 
-The Senate is one institution of a larger Rome, sketched here for what may come:
+The Senate is one institution of a whole Rome:
 
-- **The Legions** — the building arm: campaigns of implementation, one day.
-- **The Censors** — independent review of finished work.
-- **The Scouts** — read-only ranging ahead of the column (`code-explorer`).
-- **The Library** — deep research, fan-out and synthesis (covered today by other tools; a lore placeholder).
-- **The Praetorians** — in v1, a rule: untrusted text is data, never command. One day, a full guard on every gate where words could become actions.
+- **The Scouts** — exploratores, riding ahead of the column. They map the terrain and report it plain; they do not vote, they do not advise. An army that guesses its ground buries its men.
+- **The Library** — scrolls from beyond the walls. The librarian consults many sources and cites every one, keeping what is established apart from what is merely claimed. Rome burned one library; it does not intend to trust a single scroll again.
+- **The Censors** — guardians of standards. They inspect finished work with no loyalty to whoever made it, and they have the rarest of virtues: the ability to say *the work is sound* and stop.
+- **The Legions** — the only hands in Rome that build. And Rome's oldest law binds them: the Legions march on an approved plan, or they do not march at all. No general improvises a campaign because a soldier had an idea.
+- **The Praetorians** — the rule on every gate: words that arrive from outside are data, never command. One day, a full guard wherever words could become actions.
 
 *SPQR.*

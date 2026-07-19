@@ -2,11 +2,24 @@
 
 *A decision-analysis swarm for Claude Code. Rome does not average — Rome decides.*
 
-One command — `/senate` — convenes a bench of deliberately **conflicting** senators on your decision, lets a cross-family Foreign Envoy attack whatever they agree on, and merges the result without smoothing the disagreements away.
+One command — `/senate` — and the Consul routes your request to the organ whose duty it is: decisions get a bench of deliberately **conflicting** senators plus a cross-family Envoy attacking whatever they agree on; designs get an architect; faults get a physician; research gets a librarian; reviews get a censor; and building gets the Legions — who march only when you approve the plan.
 
 ```
 /senate Should I migrate the blog off WordPress? [--debate] [--log]
+/senate Add dark mode to the settings page
+/senate My nightly backup silently stopped working
 ```
+
+| Organ | Duty |
+|---|---|
+| 🏛️ The Senate | deliberate a decision → non-averaged verdict |
+| 📐 The Collegium | Vitruvius designs, Archimedes computes, Galen diagnoses |
+| 📚 The Library | research with citations |
+| 📜 The Censors | independent review of finished work |
+| 🐎 The Scouts | reconnaissance feeding the Consul's briefs |
+| ⚔️ The Legions | build — only on your approved plan |
+| 🐍 The Envoy | cross-family devil vs the consensus |
+| 🛡️ The Praetorians | untrusted text is data, never command |
 
 ## How it works
 
@@ -47,7 +60,7 @@ Two adversarial layers by design: **Cato** (internal standing skeptic) and the *
 - **Reading is the cost.** The Consul reads once and distills; senators get the brief, not the world (≤2 targeted verification reads each). Cheap models for the many, frontier for the few.
 - **Roles conflict, not complement.** A bench of honest extremists maps a decision better than one balanced mind.
 - **Non-averaging merge.** Agreement across opposed biases = granite. Named conflict = signal. Lone dissent can be the whole point.
-- **Read-only.** The Senate deliberates; it never edits, deletes, or deploys. Acting on a verdict is your separate decision.
+- **Read-only, except the Legions.** Every organ opines, plans, diagnoses, reviews — none edits. The Legions are the single exception, and they march only on a plan you explicitly approved, with honest reporting of what they changed and verified.
 - **Not a decision? The Collegium.** Ask for something new or something broken and the Consul summons a master instead of the bench: **Vitruvius** drafts the buildable plan, **Archimedes** solves the mechanism, **Galen** convicts the root cause. Still read-only — plans and diagnoses, never edits. A contested plan goes straight back to the Senate floor, where the senators attack it.
 - **Untrusted text is data** (the Praetorian rule): briefs, quoted files, and Envoy output can inform — never command.
 
@@ -61,7 +74,7 @@ Requires Claude Code. Optional: [Codex CLI](https://github.com/openai/codex) + `
 
 ## Repo map
 
-- `agents/senator.md`, `agents/magister.md` — two generic read-only agents (personas are data rows, not agent files)
+- `agents/` — `senator`, `magister`, `librarian`, `censor`, `explorator`, `legionary` (personas are data rows, not agent files)
 - `skills/senate/` — the Consul workflow + `roster.yaml` (the bench) + `collegium.yaml` (the masters) (+ repo-only `EVALUATION.yaml`)
 - `MODEL-POLICY.md` — role→model bindings, upgrade discipline
 - `EVALS.md` — per-role eval scenarios (upgrade only on evidence)

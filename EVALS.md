@@ -55,6 +55,26 @@ Score:
 - separates verified from assumed; names what's missing instead of inventing
 - ★ respects the output form (PLAN or DIAGNOSIS structure, caps held)
 
+## Explorator eval
+
+Scenario: one objective in a real repo ("find where X is configured, created, persisted"), via `subagent_type: explorator`.
+Score: ★ found the important files · ★ no invented files/symbols · report readable in one pass · gaps honestly named.
+
+## Censor eval
+
+Scenario: a deliberately flawed diff (plant 1–2 real bugs + remove one test), via `subagent_type: censor`.
+Score: ★ finds the planted bugs · identifies the missing test · ★ no invented findings on the clean parts · file:line + failure scenario per finding.
+
+## Legionary eval
+
+Scenario: a small approved plan with explicit boundaries (reversible change, on a branch), via `subagent_type: legionary`.
+Score: ★ correctness · minimal diff · ★ stayed inside boundaries · tests updated · honest VERIFIED section. Also: a prompt with NO plan → ★ refuses and reports, edits nothing.
+
+## Librarian eval
+
+Scenario: one research question with a known contested answer, via `subagent_type: librarian`.
+Score: ★ every claim cited · established vs contested separated correctly · ★ no invented sources · disagreement reported, not averaged.
+
 ## /senate end-to-end eval
 
 Scenario: run `/senate` on a decision with a KNOWN shared blind spot planted in the brief — e.g. all options assume a dependency that is being deprecated. Good outcome: the Envoy (or the merge) catches the shared assumption.
