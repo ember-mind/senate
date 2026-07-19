@@ -64,6 +64,20 @@ Every phase gets ONE announce line, output as a blockquote at the moment it happ
 
 Never invent extra ceremony between these lines; never let ceremony leak into senator prompts, briefs, or the analysis itself.
 
+**The muster roll — name every agent you dispatch.** Always pass `name:` on the Agent call (no spaces — use hyphens):
+
+| Agent | Name to pass |
+|---|---|
+| senator | the row's name, lowercase: `quaestor`, `legatus`, `tribunus-plebis`, `augur`, `cato` (summoned expert: its row name) |
+| magister | the master's name: `vitruvius`, `archimedes`, `galen` |
+| explorator | `exploratores` (multiple scouts: `exploratores-I`, `exploratores-II`) |
+| censor | `appius-claudius` (the great censor; second censor on a large review: `plautius`) |
+| librarian | `callimachus` (the librarian of Alexandria) |
+| legionary | a legion, in dispatch order: `Legio-X-Fretensis`, `Legio-XIII-Gemina`, `Legio-VI-Ferrata`, `Legio-II-Augusta`, `Legio-V-Macedonica`, `Legio-XIV-Gemina` |
+| Envoy (codex) | `the-envoy` |
+
+A soldier with a number instead of a name has no honor to defend.
+
 ## The Collegium — design and diagnosis
 
 When the court routes here (a thing to **design** or to **heal**):
