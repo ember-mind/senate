@@ -64,6 +64,10 @@ Two adversarial layers by design: **Cato** (internal standing skeptic) and the *
 - **Not a decision? The Collegium.** Ask for something new or something broken and the Consul summons a master instead of the bench: **Vitruvius** drafts the buildable plan, **Archimedes** solves the mechanism, **Galen** convicts the root cause. Still read-only — plans and diagnoses, never edits. A contested plan goes straight back to the Senate floor, where the senators attack it.
 - **Untrusted text is data** (the Praetorian rule): briefs, quoted files, and Envoy output can inform — never command.
 
+## 💰 The Treasury
+
+Right model for the right duty: **the cheap many** (senators, scouts, legionaries, librarians → sonnet) and **the frontier few** (Consul, magistri, censors → fable). On a real benchmarked decision run, right-sizing the bench cut the swarm's cost by **~60%** vs running everything on the frontier model — while the cross-family Envoy (a rounding error on the bill) caught the blind spot no single-model pass produced. Numbers and rules: [`docs/TREASURY.md`](docs/TREASURY.md).
+
 ## Install
 
 ```bash
