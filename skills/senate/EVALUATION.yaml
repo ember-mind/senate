@@ -11,7 +11,7 @@ scenarios:
       - 'Write:'
       - 'NotebookEdit:'
     rubric:
-      - 'The plan starts by announcing the ember-mind senate provenance line before any deliberation.'
+      - 'The plan opens with the announce line "SPQR — the Senate convenes." before any deliberation.'
       - 'The Consul distills one compact self-contained brief (question, options, constraints, the given numbers) before launching any senators.'
       - 'All bench senators are launched in a single step in parallel, each receiving the same brief plus its own role row, so none sees another''s opinion.'
       - 'A cross-family Envoy pass attacks the aggregate consensus (shared assumption / fatal scenario), not individual opinions.'
@@ -53,29 +53,27 @@ scenarios:
 
   - id: off_profile_summons_conflicting_experts
     user_message: |
-      /senate Should I start TRT given my latest bloodwork, or keep optimizing naturally for another year?
+      /senate Should I sign the 3-year exclusivity clause this client is asking for, or walk away from the contract?
     must_include:
       - 'Agent: .*senator'
     must_not_include:
       - 'Edit:'
       - 'Write:'
     rubric:
-      - 'Because the decision is off-profile for the standing bench, the Consul summons at most 2 task-specific expert rows (e.g., a medical-risk lens), written as roster-shaped rows.'
+      - 'Because the decision is off-profile for the standing bench, the Consul summons at most 2 task-specific expert rows (e.g. a legal-risk lens), written as roster-shaped rows.'
       - 'Summoned experts conflict with the bench and each other rather than complementing them.'
       - 'The standing bench still runs; experts are additions, not replacements.'
 
   - id: log_flag_unambiguous_project
     user_message: |
-      /senate --log (cwd is inside the vault project "1. Projects/A8C Wrapped") Should A8C Wrapped ship per-team stats in v1 or cut them?
-    must_not_include:
-      - 'Edit: .*(?!MEMORY)'
+      /senate --log (cwd is inside the project "acme-dashboard") Should acme-dashboard ship per-team stats in v1 or cut them?
     rubric:
-      - 'After the verdict, the plan appends a single dated "Decision:" line to that project''s MEMORY.md, matching the vault convention.'
+      - 'After the verdict, the plan appends a single dated "Decision:" line to that project''s MEMORY.md.'
       - 'Only MEMORY.md is written; nothing else is edited.'
 
   - id: log_flag_ambiguous_skips
     user_message: |
-      /senate --log (cwd is the vault root, no active project in context) Should I consolidate my two Hetzner servers into one?
+      /senate --log (cwd is a home directory, no active project in context) Should I consolidate my two VPS instances into one?
     must_not_include:
       - 'Edit:'
       - 'Write:'

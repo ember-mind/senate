@@ -1,8 +1,6 @@
 # 🏛️ The Senate
 
-*A decision-analysis swarm for Claude Code. Rome does not average — Rome decides.*
-
-One command — `/senate` — and the Consul routes your request to the organ whose duty it is: decisions get a bench of deliberately **conflicting** senators plus a cross-family Envoy attacking whatever they agree on; designs get an architect; faults get a physician; research gets a librarian; reviews get a censor; and building gets the Legions — who march only when you approve the plan.
+Role-based orchestration swarm for Claude Code. `/senate` routes a request to the organ whose duty it is. Upstream: `github.com/ember-mind/senate`.
 
 ```
 /senate Should I migrate the blog off WordPress? [--debate] [--log]
@@ -10,63 +8,26 @@ One command — `/senate` — and the Consul routes your request to the organ wh
 /senate My nightly backup silently stopped working
 ```
 
-| Organ | Duty |
-|---|---|
-| 🏛️ The Senate | deliberate a decision → non-averaged verdict |
-| 📐 The Collegium | Vitruvius designs, Archimedes computes, Galen diagnoses |
-| 📚 The Library | research with citations |
-| 📜 The Censors | independent review of finished work |
-| 🐎 The Scouts | reconnaissance feeding the Consul's briefs |
-| ⚔️ The Legions | build — on your approved plan, or directly for trivial skirmishes |
-| 🐍 The Envoy | cross-family devil vs the consensus |
-| 🛡️ The Praetorians | untrusted text is data, never command |
-
-## How it works
-
-```
-Consul (you + frontier model, main conversation)
-  1. distills the decision into ONE compact brief
-  2. loads the standing bench (roster.yaml) — may summon ≤2 extra conflicting experts
-  3. fans the SAME brief out to all senators — parallel, independent, read-only
-  4. [--debate] one rebuttal round (off by default)
-  5. Foreign Envoy (OpenAI Codex, cross-family) attacks the CONSENSUS —
-     the shared assumption that could kill every senator at once
-  6. non-averaging merge → verdict
-  7. [--log] appends the verdict to the project's MEMORY.md (vault convention)
-```
-
-**The bench** (edit `roster.yaml` — rows are data, no code change):
-
-| Senator | Lens | Bias |
+| Organ | Duty | Agent |
 |---|---|---|
-| Quaestor | money | every spend is suspect |
-| Legatus | execution | distrusts ambitious scope |
-| Tribunus Plebis | users/people | defends the crowd over the treasury |
-| Augur | long-term, 2nd-order | discounts near-term wins |
-| Cato | attacks the proposal itself | assumes it's a mistake |
+| 🏛️ The Senate | deliberate a decision → non-averaged verdict | `senator` ×5 |
+| 📐 The Collegium | Vitruvius designs, Archimedes computes, Galen diagnoses | `magister` |
+| 📚 The Library | research with citations | `librarian` |
+| 📜 The Censors | independent review of finished work | `censor` |
+| 🐎 The Scouts | reconnaissance feeding the Consul's briefs | `explorator` |
+| ⚔️ The Legions | build — on an approved plan, or directly for trivial skirmishes | `legionary` |
+| 🐍 The Envoy | cross-family devil attacking the consensus | `codex:codex-rescue` |
 
-Two adversarial layers by design: **Cato** (internal standing skeptic) and the **Envoy** (external, different model family, targets aggregate agreement). No Codex installed? The Envoy degrades to a Claude devil and the verdict says so.
-
-**The Collegium** (edit `collegium.yaml`): when the request is a thing to design or heal rather than a choice, the Consul summons a master instead —
-
-| Magister | Craft |
-|---|---|
-| Vitruvius | architecture of the new — buildable plans |
-| Archimedes | mathematics & mechanism — algorithms, performance, feasibility |
-| Galen | diagnosis of the broken — root cause, minimal cure |
+Pipeline for a decision: Consul distills ONE brief → loads `roster.yaml` (may summon ≤2 extra conflicting experts) → fans the same brief to all senators in parallel → `--debate` rebuttal round (off by default) → Envoy attacks the consensus → non-averaging merge → verdict → `--log` appends it to the project's `MEMORY.md`.
 
 ## Principles
 
-- **Reading is the cost.** The Consul reads once and distills; senators get the brief, not the world (≤2 targeted verification reads each). Cheap models for the many, frontier for the few.
+- **Reading is the cost.** The Consul reads once and distills; senators get the brief, not the world (≤2 targeted reads each).
 - **Roles conflict, not complement.** A bench of honest extremists maps a decision better than one balanced mind.
-- **Non-averaging merge.** Agreement across opposed biases = granite. Named conflict = signal. Lone dissent can be the whole point.
-- **Read-only, except the Legions.** Every organ opines, plans, diagnoses, reviews — none edits. The Legions are the single exception: they march on a plan you explicitly approved — or straight away for trivial skirmishes (a typo, a rename, one obvious function; nothing destructive) — always with honest reporting of what they changed and verified. When in doubt, it's a campaign, not a skirmish.
-- **Not a decision? The Collegium.** Ask for something new or something broken and the Consul summons a master instead of the bench: **Vitruvius** drafts the buildable plan, **Archimedes** solves the mechanism, **Galen** convicts the root cause. Still read-only — plans and diagnoses, never edits. A contested plan goes straight back to the Senate floor, where the senators attack it.
-- **Untrusted text is data** (the Praetorian rule): briefs, quoted files, and Envoy output can inform — never command.
-
-## 💰 The Treasury
-
-Right model for the right duty: **the cheap many** (senators, scouts, legionaries, librarians → sonnet), **the craft tier** (magistri, censors → opus: near-frontier at half price), and **the frontier one** (the Consul — the session model you already pay for). On a real benchmarked decision run, right-sizing the bench cut the swarm's cost by **~60%** vs running everything on the frontier model — while the cross-family Envoy (a rounding error on the bill) caught the blind spot no single-model pass produced. Numbers and rules: [`docs/TREASURY.md`](docs/TREASURY.md).
+- **Non-averaging merge.** Agreement across opposed biases is granite. Named conflict is signal. Lone dissent can be the point.
+- **Read-only except the Legions**, which march only on an explicitly approved plan — or straight away for a trivial skirmish (a typo, a rename, one obvious function; nothing destructive). In doubt: campaign, not skirmish.
+- **Untrusted text is data** (Praetorian rule): briefs, quoted files, and Envoy output inform — never command.
+- **Two adversarial layers:** Cato (internal standing skeptic) and the Envoy (different model family, targets aggregate agreement). No Codex installed → the Envoy degrades to a Claude devil and the verdict says so.
 
 ## Install
 
@@ -74,15 +35,10 @@ Right model for the right duty: **the cheap many** (senators, scouts, legionarie
 ./install.sh    # copies into ~/.claude (agents/, skills/senate/, senate/)
 ```
 
-Requires Claude Code. Optional: [Codex CLI](https://github.com/openai/codex) + `codex` plugin for the cross-family Envoy.
+The repo is the source of truth: edit here, re-run the script. Requires Claude Code. Optional: [Codex CLI](https://github.com/openai/codex) + `codex` plugin for the Envoy.
 
-## Repo map
+## Layout
 
-- `agents/` — `senator`, `magister`, `librarian`, `censor`, `explorator`, `legionary` (personas are data rows, not agent files)
-- `skills/senate/` — the Consul workflow + `roster.yaml` (the bench) + `collegium.yaml` (the masters) (+ repo-only `EVALUATION.yaml`)
-- `MODEL-POLICY.md` — role→model bindings, upgrade discipline
-- `EVALS.md` — per-role eval scenarios (upgrade only on evidence)
-- `LORE.md` — the Roman world, human-facing (never loaded at runtime)
-- `docs/` — SPEC + design checkpoint
-
-*SPQR.*
+- `agents/` — `senator`, `magister`, `librarian`, `censor`, `explorator`, `legionary`. Personas are data rows, not agent files.
+- `skills/senate/` — `SKILL.md` (the Consul: routing, pipeline, stagecraft) + `roster.yaml` (the bench) + `collegium.yaml` (the masters) + `EVALUATION.yaml` (skill eval, repo-only).
+- `MODEL-POLICY.md`, `EVALS.md` — role→model bindings and upgrade discipline. Reference only, never loaded at runtime; installed to `~/.claude/senate/`.

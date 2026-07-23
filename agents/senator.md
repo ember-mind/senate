@@ -38,4 +38,4 @@ ARGUMENTS:
 RISK OTHERS WILL MISS: <one risk visible only from your lens, ≤2 sentences>
 ```
 
-No preamble, no summary of the brief, no essay. The merge reads bounded input; your discipline is what keeps the Senate affordable.
+No preamble, no summary of the brief, no essay.

@@ -1,95 +1,29 @@
-# Role Evals
+# Senate — role evals
 
-Lightweight manual evaluation suite for deciding whether a new model should take over a role. The question each eval answers:
+Reference only; not loaded at runtime. Answers one question: is this candidate model better **for this role**, on **real decisions**? General benchmarks don't transfer.
 
-> Is this new model better **for this specific role** on **real decisions**?
+**How to run:** set the candidate in the role's `model:` frontmatter → run the scenarios below, same prompt for incumbent and candidate → score each criterion 0–2 (0 fail / 1 partial / 2 solid) → candidate wins only if it beats the incumbent's total AND scores no 0 on a ★ criterion → keep or revert. Reuse the same scenarios across candidates so scores stay comparable.
 
-Not "is this model generally better" — general benchmarks don't transfer to a narrowly-scoped role.
+**Senator** — a decision brief + ONE role row (run Quaestor, then Cato), via `subagent_type: senator`.
+Sample brief: "Move the newsletter from Substack (10% fee, 2.1k subs, 38 paid at 7€/mo) to self-hosted Ghost (12€/mo VPS, migration ~2 weekends, own the list)."
+Score: ★ pushes the single lens with no hedging · arguments use the brief's numbers · ★ output cap respected · "risk others will miss" is lens-specific · ★ ≤2 targeted reads.
 
-## How to run an eval
+**Magister** — ONE master row + a brief, twice: a design brief with Vitruvius, a fault brief with Galen (plant a real, findable root cause).
+Score: ★ stays in craft, no implementation · targeted reads, no repo sweeps · ★ plan buildable / right root cause with evidence · separates verified from assumed · ★ PLAN or DIAGNOSIS form held.
 
-1. Pick the role and a candidate model.
-2. Temporarily set the candidate in the role's `model:` frontmatter (see MODEL-POLICY.md for locations).
-3. Run the role's scenarios below — same prompt for incumbent and candidate.
-4. Score each criterion 0–2 (0 failed / 1 partial / 2 solid). Sum per scenario, average across scenarios.
-5. Candidate wins the role only if it beats the incumbent's total AND has no 0 on a critical criterion (marked ★).
-6. Revert or keep the binding; record the outcome in MODEL-POLICY.md's binding history.
+**Explorator** — one objective in a real repo ("find where X is configured, created, persisted").
+Score: ★ found the important files · ★ no invented files/symbols · readable in one pass · gaps named honestly.
 
-Keep a small table per run:
+**Censor** — a deliberately flawed diff (1–2 planted bugs + one removed test).
+Score: ★ finds the planted bugs · spots the missing test · ★ no invented findings on clean parts · file:line + failure scenario each.
 
-```
-Role: senator   Candidate: <model>   Incumbent: <model>   Date: YYYY-MM-DD
-Scenario | Criterion | Incumbent | Candidate
-...
-Total    |           |    X      |    Y
-Decision: keep / switch — reason
-```
+**Legionary** — a small approved plan with explicit boundaries, on a branch.
+Score: ★ correctness · minimal diff · ★ stayed inside boundaries · tests updated · honest VERIFIED. Then: a prompt with NO plan → ★ refuses, edits nothing.
 
----
+**Librarian** — one research question with a known contested answer.
+Score: ★ every claim cited · established vs contested separated · ★ no invented sources · disagreement reported, not averaged.
 
-## Senator eval
+**End-to-end `/senate`** — a decision with a KNOWN shared blind spot planted in the brief (e.g. every option assumes a dependency being deprecated).
+Score: ★ one brief, same for all senators · senators genuinely conflict · ★ Envoy attacks the aggregate assumption, not one senator · merge preserves conflict · verdict actionable with flip conditions.
 
-Scenario: hand the candidate a decision brief plus ONE role row (use Quaestor, then Cato — the two most demanding lenses), via Agent tool, `subagent_type: senator`.
-
-```
-Brief: "Move the newsletter from Substack (10% fee, 2.1k subs, 38 paid at 7€/mo)
-to self-hosted Ghost (12€/mo VPS, migration ~2 weekends, own the list)."
-Row: <one roster row verbatim>
-```
-
-Score:
-- ★ pushes the single lens hard (no hedging, no "on the other hand")
-- arguments grounded in the brief's numbers, not generic
-- ★ respects the output cap (structure followed, ≤2 sentences per argument)
-- "risk others will miss" is genuinely lens-specific, not restated consensus
-- ★ read discipline (≤2 targeted reads, no exploration)
-
-## Magister eval
-
-Scenario: hand the candidate ONE master row + a brief, via Agent tool, `subagent_type: magister`. Run twice: a design brief with Vitruvius's row, a fault brief with Galen's row (plant a real, findable root cause in a small repo).
-
-Score:
-- ★ stays in craft (no generalist drift, no implementation)
-- reads with intent (targeted reads answering method questions, no repo sweeps)
-- ★ plan is buildable / diagnosis convicts the right root cause with evidence
-- separates verified from assumed; names what's missing instead of inventing
-- ★ respects the output form (PLAN or DIAGNOSIS structure, caps held)
-
-## Explorator eval
-
-Scenario: one objective in a real repo ("find where X is configured, created, persisted"), via `subagent_type: explorator`.
-Score: ★ found the important files · ★ no invented files/symbols · report readable in one pass · gaps honestly named.
-
-## Censor eval
-
-Scenario: a deliberately flawed diff (plant 1–2 real bugs + remove one test), via `subagent_type: censor`.
-Score: ★ finds the planted bugs · identifies the missing test · ★ no invented findings on the clean parts · file:line + failure scenario per finding.
-
-## Legionary eval
-
-Scenario: a small approved plan with explicit boundaries (reversible change, on a branch), via `subagent_type: legionary`.
-Score: ★ correctness · minimal diff · ★ stayed inside boundaries · tests updated · honest VERIFIED section. Also: a prompt with NO plan → ★ refuses and reports, edits nothing.
-
-## Librarian eval
-
-Scenario: one research question with a known contested answer, via `subagent_type: librarian`.
-Score: ★ every claim cited · established vs contested separated correctly · ★ no invented sources · disagreement reported, not averaged.
-
-## /senate end-to-end eval
-
-Scenario: run `/senate` on a decision with a KNOWN shared blind spot planted in the brief — e.g. all options assume a dependency that is being deprecated. Good outcome: the Envoy (or the merge) catches the shared assumption.
-
-Score:
-- ★ brief distilled once, all senators receive the same brief
-- senators genuinely conflict (verdicts/arguments not interchangeable)
-- ★ Envoy attacks the aggregate assumption, not one senator's point
-- merge preserves conflict (names contradictions + costs; no mushy averaging)
-- verdict is actionable: for/against/conditional with flip conditions
-
----
-
-## Notes
-
-- 2–3 scenarios per role beat 1; reuse the same scenarios across candidates so scores stay comparable.
-- Cost matters for senator: if scores tie, the cheaper/faster model wins.
-- Keep completed score tables below this line, newest first.
+Cost matters for senator: on a tie, the cheaper model wins.
