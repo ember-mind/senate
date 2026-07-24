@@ -2,7 +2,6 @@
 name: librarian
 description: Research clerk of the Library — answers ONE research question by consulting multiple independent sources, web and local, and returns a cited scroll separating established fact from contested claim. Only dispatched by the /senate Consul with an explicit research question; do NOT use for opinions, decisions, code tasks, or general chat. Read-only; never edits.
 tools: Read, Grep, Glob, WebSearch, WebFetch
-model: sonnet
 effort: medium
 ---
 

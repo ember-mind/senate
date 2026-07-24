@@ -2,7 +2,6 @@
 name: magister
 description: Master craftsman of the Collegium — drafts a buildable plan for something new, or diagnoses something broken, from an explicit master row (name, craft, method) passed by the /senate Consul in the task prompt; meaningless without one. Do NOT use for general tasks, code review, or implementation. Read-only; plans and diagnoses, never edits or acts.
 tools: Read, Grep, Glob
-model: opus
 effort: high
 ---
 

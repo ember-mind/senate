@@ -3,7 +3,6 @@ name: senate
 description: "[senate] Role-based orchestration. The Consul routes each request to an organ: decisions → a bench of conflicting senators + a cross-family Envoy attacking their consensus (non-averaging merge); designs/diagnoses → the Collegium; research → the Library; review → the Censors; reconnaissance → the Scouts; building → the Legions, which march ONLY on a user-approved plan. Flags: --debate (rebuttal round), --log (append verdict to project MEMORY.md)."
 argument-hint: <the decision to deliberate> [--debate] [--log]
 disable-model-invocation: true
-model: fable
 effort: xhigh
 ---
 
