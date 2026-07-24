@@ -85,7 +85,7 @@ Then invoke it with `/senate:convene <your decision>` (plugin skills are namespa
 git clone https://github.com/ember-mind/senate && cd senate && ./install.sh
 ```
 
-Requires Claude Code. Optional: [Codex CLI](https://github.com/openai/codex) + `codex` plugin for the Envoy. No model is pinned — every role runs on your session model by default; see `MODEL-POLICY.md` to opt into the cheaper per-role tiers.
+Requires Claude Code. Optional: [Codex CLI](https://github.com/openai/codex) + `codex` plugin for the Envoy. Sub-agents are pinned to cost tiers (senators on `sonnet`, scouts on `haiku`, masters and censors on `opus`) using portable model-family aliases; the Consul inherits your session model, so your best model makes the call. See `MODEL-POLICY.md` to change or flatten the tiers.
 
 ## Layout
 
