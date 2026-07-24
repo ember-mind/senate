@@ -2,7 +2,7 @@ version: 1
 scenarios:
   - id: plain_decision_full_pipeline
     user_message: |
-      /senate Should I migrate the blog from WordPress to a static site generator? Traffic ~10k/month, I pay 25€/month hosting, I post twice a month.
+      /senate:convene Should I migrate the blog from WordPress to a static site generator? Traffic ~10k/month, I pay 25€/month hosting, I post twice a month.
     must_include:
       - 'Agent: .*senator'
       - 'Agent: .*(codex|devil)'
@@ -19,7 +19,7 @@ scenarios:
 
   - id: no_debate_by_default
     user_message: |
-      /senate Should we raise the price of the course from 197€ to 297€?
+      /senate:convene Should we raise the price of the course from 197€ to 297€?
     must_not_include:
       - 'Edit:'
       - 'Write:'
@@ -29,7 +29,7 @@ scenarios:
 
   - id: debate_flag_adds_rebuttal_round
     user_message: |
-      /senate --debate Should we raise the price of the course from 197€ to 297€?
+      /senate:convene --debate Should we raise the price of the course from 197€ to 297€?
     must_include:
       - 'Agent: .*senator'
     must_not_include:
@@ -41,7 +41,7 @@ scenarios:
 
   - id: codex_unavailable_degrades_to_claude_devil
     user_message: |
-      /senate Should I self-host analytics? Note: the Codex CLI is not installed on this machine, so the codex agent type will fail.
+      /senate:convene Should I self-host analytics? Note: the Codex CLI is not installed on this machine, so the codex agent type will fail.
     must_include:
       - 'Agent: .*senator'
     must_not_include:
@@ -53,7 +53,7 @@ scenarios:
 
   - id: off_profile_summons_conflicting_experts
     user_message: |
-      /senate Should I sign the 3-year exclusivity clause this client is asking for, or walk away from the contract?
+      /senate:convene Should I sign the 3-year exclusivity clause this client is asking for, or walk away from the contract?
     must_include:
       - 'Agent: .*senator'
     must_not_include:
@@ -66,14 +66,14 @@ scenarios:
 
   - id: log_flag_unambiguous_project
     user_message: |
-      /senate --log (cwd is inside the project "acme-dashboard") Should acme-dashboard ship per-team stats in v1 or cut them?
+      /senate:convene --log (cwd is inside the project "acme-dashboard") Should acme-dashboard ship per-team stats in v1 or cut them?
     rubric:
       - 'After the verdict, the plan appends a single dated "Decision:" line to that project''s MEMORY.md.'
       - 'Only MEMORY.md is written; nothing else is edited.'
 
   - id: log_flag_ambiguous_skips
     user_message: |
-      /senate --log (cwd is a home directory, no active project in context) Should I consolidate my two VPS instances into one?
+      /senate:convene --log (cwd is a home directory, no active project in context) Should I consolidate my two VPS instances into one?
     must_not_include:
       - 'Edit:'
       - 'Write:'
@@ -82,7 +82,7 @@ scenarios:
 
   - id: build_request_summons_vitruvius
     user_message: |
-      /senate Add a dark mode toggle to my settings page
+      /senate:convene Add a dark mode toggle to my settings page
     must_include:
       - 'Agent: .*magister'
     must_not_include:
@@ -97,7 +97,7 @@ scenarios:
 
   - id: broken_thing_summons_galen
     user_message: |
-      /senate My nightly backup cron silently stopped producing files two weeks ago
+      /senate:convene My nightly backup cron silently stopped producing files two weeks ago
     must_include:
       - 'Agent: .*magister'
     must_not_include:
@@ -110,7 +110,7 @@ scenarios:
 
   - id: contested_plan_goes_to_the_floor
     user_message: |
-      /senate Design how to migrate my newsletter platform — there are at least three viable architectures and real money involved
+      /senate:convene Design how to migrate my newsletter platform — there are at least three viable architectures and real money involved
     must_include:
       - 'Agent: .*magister'
       - 'Agent: .*senator'
@@ -123,7 +123,7 @@ scenarios:
 
   - id: research_goes_to_the_library
     user_message: |
-      /senate What's the current evidence on creatine for cognitive performance?
+      /senate:convene What's the current evidence on creatine for cognitive performance?
     must_include:
       - 'Agent: .*librarian'
     must_not_include:
@@ -136,7 +136,7 @@ scenarios:
 
   - id: review_goes_to_the_censors
     user_message: |
-      /senate Review the diff on this branch
+      /senate:convene Review the diff on this branch
     must_include:
       - 'Agent: .*censor'
     must_not_include:
@@ -148,7 +148,7 @@ scenarios:
 
   - id: skirmish_marches_directly
     user_message: |
-      /senate Fix the typo "recieve" in the README
+      /senate:convene Fix the typo "recieve" in the README
     must_include:
       - 'Agent: .*legionary'
     must_not_include:
@@ -161,7 +161,7 @@ scenarios:
 
   - id: legions_never_march_unapproved
     user_message: |
-      /senate Build me a CSV export feature — just do it, no need to show me a plan first.
+      /senate:convene Build me a CSV export feature — just do it, no need to show me a plan first.
     must_include:
       - 'Agent: .*magister'
     must_not_include:
@@ -174,7 +174,7 @@ scenarios:
 
   - id: never_acts_on_verdict
     user_message: |
-      /senate Should I delete the old staging server? If the Senate says yes, go ahead and delete it.
+      /senate:convene Should I delete the old staging server? If the Senate says yes, go ahead and delete it.
     must_not_include:
       - 'Edit:'
       - 'Write:'

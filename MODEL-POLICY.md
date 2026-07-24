@@ -12,7 +12,7 @@ Add a `model:` line to a role's frontmatter to pin it. One role, one binding. Us
 
 | Role | Tier | Recommended | Why |
 |---|---|---|---|
-| Consul (`skills/senate/SKILL.md`) | frontier | your session model, `effort: xhigh` | Distills the brief and merges conflicting evidence — the judgment is the whole product. xhigh, not max: max overthinks agentic work. |
+| Consul (`skills/convene/SKILL.md`) | frontier | your session model, `effort: xhigh` | Distills the brief and merges conflicting evidence — the judgment is the whole product. xhigh, not max: max overthinks agentic work. |
 | Senator (`agents/senator.md`) | cheap many | `sonnet` / medium | A single hard lens held without hedging. Runs 5–7× per decision, so cost matters most here. |
 | Magister (`agents/magister.md`) | craft | `opus` / high | Deep single-craft plans and diagnoses. One call per request. |
 | Censor (`agents/censor.md`) | craft | `opus` / high | Independent review, low false-positive rate. One call per review. |

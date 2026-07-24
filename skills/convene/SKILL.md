@@ -1,6 +1,6 @@
 ---
-name: senate
-description: "[senate] Role-based orchestration. The Consul routes each request to an organ: decisions → a bench of conflicting senators + a cross-family Envoy attacking their consensus (non-averaging merge); designs/diagnoses → the Collegium; research → the Library; review → the Censors; reconnaissance → the Scouts; building → the Legions, which march ONLY on a user-approved plan. Flags: --debate (rebuttal round), --log (append verdict to project MEMORY.md)."
+name: convene
+description: "[senate] Convene the Senate: role-based orchestration. The Consul routes each request to an organ: decisions → a bench of conflicting senators + a cross-family Envoy attacking their consensus (non-averaging merge); designs/diagnoses → the Collegium; research → the Library; review → the Censors; reconnaissance → the Scouts; building → the Legions, which march ONLY on a user-approved plan. Flags: --debate (rebuttal round), --log (append verdict to project MEMORY.md)."
 argument-hint: <the decision to deliberate> [--debate] [--log]
 disable-model-invocation: true
 effort: xhigh
@@ -99,7 +99,7 @@ Never touches the announce lines or the Roman names, and never softens the conte
 
 ## The Collegium — design and diagnosis
 
-1. Load the guild from `~/.claude/skills/senate/collegium.yaml` — rows `{name, craft, method}`: **Vitruvius** (architecture of the new), **Archimedes** (mechanism, performance, feasibility), **Galen** (diagnosis of the broken). Off-craft request → write a new magister row of the same shape.
+1. Load the guild from `~/.claude/skills/convene/collegium.yaml` — rows `{name, craft, method}`: **Vitruvius** (architecture of the new), **Archimedes** (mechanism, performance, feasibility), **Galen** (diagnosis of the broken). Off-craft request → write a new magister row of the same shape.
 2. Announce: `📐 The Collegium is summoned — <name> takes the floor.`
 3. Distill the brief exactly as in Workflow step 1 (URLs and issue links fetched once, here), add concrete pointers (files, repro steps, extracted facts), then launch ONE `magister`: Agent tool, `subagent_type: magister`, with the master row verbatim + the brief. The magister reads what its craft requires and returns a bounded PLAN or DIAGNOSIS. It never edits — and neither do you.
 4. **A contested plan goes to the floor.** If the plan involves a genuine choice (multiple viable roads, big spend, real risk), announce `> 🏛️ The plan is carried to the floor — the Senate will tear at it.` and run the Senate workflow with the plan as the brief. Uncontested → deliver directly with the matching **Next step** line.
@@ -109,7 +109,7 @@ Implementing a plan is a separate user approval, never assumed.
 ## Workflow
 
 1. **Distill ONE compact brief.** Reduce the raw decision into a single self-contained brief: the question, the options, the hard constraints, the concrete numbers, what "good" looks like. Every senator receives this SAME brief verbatim — never fan out sprawling raw context. Read files once, here; senators do not re-read the world. **URLs and issue links too:** fetch once during distillation; senators receive extracted facts, never raw links (they have no web access).
-2. **Load the standing bench** from `~/.claude/skills/senate/roster.yaml` — rows `{name, focus, bias}`.
+2. **Load the standing bench** from `~/.claude/skills/convene/roster.yaml` — rows `{name, focus, bias}`.
 3. **Optionally summon ≤2 task-specific experts** when the decision is off-profile for the bench (e.g. a medical or legal angle). Same row shape. Summoned rows must CONFLICT with the bench and each other, never complement.
 4. **Fan out — single message, N parallel Agent calls.** Launch ALL senators at once: `subagent_type: senator`, one call per row. Sequential launches would let later senators see earlier output. Each task prompt contains exactly: the role row verbatim, the brief verbatim, nothing else.
 5. **`--debate` only:** one parallel rebuttal round. Re-launch every senator (single message, parallel) with the brief plus ALL first-round opinions; each defends or updates its verdict. Off by default — it roughly doubles the calls.

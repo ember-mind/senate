@@ -9,7 +9,7 @@
     {
       "name": "senate",
       "source": "./",
-      "description": "Role-based agent swarm: /senate routes decisions to a bench of conflicting senators + a cross-family envoy, designs to the Collegium, review to the Censors, building to the Legions.",
+      "description": "Role-based agent swarm: /senate:convene routes decisions to a bench of conflicting senators + a cross-family envoy, designs to the Collegium, review to the Censors, building to the Legions.",
       "category": "orchestration",
       "tags": ["multi-agent", "decision-making", "code-review", "devils-advocate"]
     }

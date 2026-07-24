@@ -1,11 +1,11 @@
 # 🏛️ The Senate
 
-Role-based orchestration swarm for Claude Code. `/senate` routes a request to the organ whose duty it is. Upstream: `github.com/ember-mind/senate`.
+Role-based orchestration swarm for Claude Code. One command routes a request to the organ whose duty it is. Installed as a plugin the command is `/senate:convene`; from source it's `/convene`. Upstream: `github.com/ember-mind/senate`.
 
 ```
-/senate Should I migrate the blog off WordPress? [--debate] [--log]
-/senate Add dark mode to the settings page
-/senate My nightly backup silently stopped working
+/senate:convene Should I migrate the blog off WordPress? [--debate] [--log]
+/senate:convene Add dark mode to the settings page
+/senate:convene My nightly backup silently stopped working
 ```
 
 | Organ | Duty | Agent |
@@ -22,7 +22,7 @@ Pipeline for a decision: Consul distills ONE brief → loads `roster.yaml` (may 
 
 ## What a verdict looks like
 
-`/senate Move the newsletter off Substack (10% fee, 2,100 subs, 38 paid at €7/mo) to self-hosted Ghost (€12/mo VPS, migration ~2 weekends, own the list)?`
+`/senate:convene Move the newsletter off Substack (10% fee, 2,100 subs, 38 paid at €7/mo) to self-hosted Ghost (€12/mo VPS, migration ~2 weekends, own the list)?`
 
 ```
 # ⚖️ The Senate's Verdict
@@ -77,9 +77,9 @@ The senators never average. Where opposed biases agree, that is the strongest si
 /plugin install senate@ember-mind
 ```
 
-Then invoke it with `/senate:senate <your decision>` (plugin skills are namespaced by the plugin name). Update later with `/plugin marketplace update ember-mind`.
+Then invoke it with `/senate:convene <your decision>` (plugin skills are namespaced by the plugin name). Update later with `/plugin marketplace update ember-mind`.
 
-**Or from source** — copies straight into `~/.claude` and gives you a bare `/senate`:
+**Or from source** — copies straight into `~/.claude` and gives you a bare `/convene` (no plugin namespace):
 
 ```bash
 git clone https://github.com/ember-mind/senate && cd senate && ./install.sh
@@ -90,6 +90,6 @@ Requires Claude Code. Optional: [Codex CLI](https://github.com/openai/codex) + `
 ## Layout
 
 - `agents/` — `senator`, `magister`, `librarian`, `censor`, `explorator`, `legionary`. Personas are data rows, not agent files.
-- `skills/senate/` — `SKILL.md` (the Consul: routing, pipeline, stagecraft) + `roster.yaml` (the bench) + `collegium.yaml` (the masters) + `EVALUATION.yaml` (skill eval, repo-only).
+- `skills/convene/` — `SKILL.md` (the Consul: routing, pipeline, stagecraft) + `roster.yaml` (the bench) + `collegium.yaml` (the masters) + `EVALUATION.yaml` (skill eval, repo-only).
 - `.claude-plugin/` — `plugin.json` + `marketplace.json` (plugin distribution).
 - `MODEL-POLICY.md` — recommended per-role model tiers (opt-in). `EVALS.md` — upgrade discipline. Reference only, never loaded at runtime.
