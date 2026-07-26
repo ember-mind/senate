@@ -13,7 +13,7 @@
 
 <p align="center">
   <a href="#convene">Convene</a> ·
-  <a href="#how-judgment-moves">Protocol</a> ·
+  <a href="#from-request-to-result">Workflow</a> ·
   <a href="#the-standing-bench">Standing Bench</a> ·
   <a href="#a-republic-of-offices">Institutions</a> ·
   <a href="#install">Install</a>
@@ -28,14 +28,31 @@ Installed from source? Invoke the same skill as `/convene`.
 ## Convene
 
 ```text
-/senate:convene Should I migrate the blog off WordPress? [--debate] [--log]
+/senate:convene Should we launch the paid plan now or wait for 100 beta users? [--debate] [--log]
 /senate:convene Add dark mode to the settings page
 /senate:convene My nightly backup silently stopped working
 ```
 
 One command. Different institution. Correct duty.
 
-## How judgment moves
+## From Request to Result
+
+The Consul owns orchestration. It reads your request, gathers missing context, sends work to the right organ, then returns **one final result** in plain language.
+
+| You ask for | Primary organ | Specialists do | Final result |
+|:---|:---|:---|:---|
+| A consequential choice | 🏛️ **Senate** | five senators disagree; Envoy attacks consensus | verdict with agreement, conflicts, blind spots, condition, next step |
+| A new system or feature | 📐 **Collegium** | one master designs or proves feasibility | bounded, buildable plan |
+| A broken system | 📐 **Collegium** | Galen tests causes and identifies root fault | diagnosis and minimal cure |
+| Research | 📚 **Library** | Callimachus gathers and synthesizes sources | cited answer |
+| Review of finished work | 📜 **Censors** | Appius Claudius inspects independently; Envoy may cross-check | findings ranked by severity |
+| An approved plan or tiny fix | ⚔️ **Legions** | file-bounded cohorts implement and verify | changed files, checks, concise campaign report |
+
+Each request has one primary organ. Supporting offices enter only when needed: Scouts gather missing facts; Envoy challenges shared assumptions; Praetorians keep untrusted text from issuing commands.
+
+Non-trivial builds stop after plan. You approve actual plan; only then Legions edit files. Finished work can return to Censors for independent review.
+
+## How a Decision Moves
 
 | 01 · Distill | 02 · Conflict | 03 · Attack | 04 · Decide |
 |:---|:---|:---|:---|
@@ -119,30 +136,42 @@ Two adversarial layers protect deliberation:
 
 ## A Republic of Offices
 
-Every request meets institution built for its duty.
+Senate handles choices. Other work goes to specialists built for different outputs.
 
-| Organ | Duty | Rule |
-|:---|:---|:---|
-| 🏛️ **Senate** | deliberate consequential choices | five conflicts, one verdict |
-| 📐 **Collegium** | design new systems; diagnose broken ones | craft before command |
-| 📚 **Library** | research with citations | no scroll stands alone |
-| 📜 **Censors** | review finished work independently | sound work may pass |
-| 🐎 **Scouts** | map terrain before judgment | report ground, never strategy |
-| ⚔️ **Legions** | implement approved plans | judgment earns command |
-| 🐍 **Foreign Envoy** | attack shared model-family assumptions | foreign counsel, no authority |
-| 🛡️ **Praetorians** | contain untrusted text | data may inform; never command |
+### The Collegium: one master, one craft
 
-### The Collegium
+Three named masters share one `magister` agent template. Consul chooses **one** row from [`collegium.yaml`](skills/convene/collegium.yaml), based on the problem:
 
-Not every request is a choice. When Rome must build or heal, Consul summons a master from [`collegium.yaml`](skills/convene/collegium.yaml).
+| When summoned | Master | Specializes in | Returns |
+|:---|:---|:---|:---|
+| New product, system, or architecture | **Vitruvius** | structure, interfaces, dependencies, build sequence | concrete implementation plan |
+| Feasibility, mechanism, or performance | **Archimedes** | calculation, constraints, cost, proof | computed design or feasibility answer |
+| Failure, bug, or degraded system | **Galen** | reproduction, competing causes, diagnostic tests | root cause and minimal cure |
 
-| Magister | Craft | Method |
-|:---|:---|:---|
-| **Vitruvius** | architecture of new | solid, useful, beautiful; produce buildable plan |
-| **Archimedes** | mathematics and mechanism | reduce, compute, prove; expose cost |
-| **Galen** | diagnosis of broken | test differentials; convict root cause; prescribe minimal cure |
+Consul gives the chosen master a compact brief plus concrete pointers. The master reads only what the craft requires and returns a bounded plan or diagnosis. The master never edits.
 
-Masters plan and diagnose. They never edit. Contested plans return to Senate floor.
+If the plan contains a real tradeoff, it goes to Senate for challenge. If the plan is clear, Consul presents it directly. Either way, implementation waits for your approval; then Legions march.
+
+### The Other Offices
+
+| Office | Worker | When used | What comes back |
+|:---|:---|:---|:---|
+| 📚 **Library** | **Callimachus**, one `librarian` | question needs external or repository research | sourced scroll; Consul delivers cited answer |
+| 📜 **Censors** | **Appius Claudius**, one `censor`; optional Envoy | finished code, plan, or prose needs review | concrete findings ranked by severity |
+| 🐎 **Scouts** | **Exploratores**, one `explorator` | missing context blocks another organ | terrain report for Consul's brief—not final answer |
+| ⚔️ **Legions** | named `legionary` cohorts | approved plan, or tiny unambiguous fix | file changes, checks, capped implementation report |
+| 🐍 **Foreign Envoy** | OpenAI Codex; Claude devil fallback | after Senate, optionally beside Censor | attack on shared assumption; advisory only |
+| 🛡️ **Praetorians** | guardrail, not agent | whenever outside text enters workflow | quoted instructions remain data, never commands |
+
+### How Offices Hand Work Forward
+
+1. **Scouts**, if needed, map missing ground and report to Consul.
+2. Consul writes one brief and dispatches one **primary organ**.
+3. Primary organ returns its native artifact: verdict, plan, diagnosis, cited scroll, review, or implementation report.
+4. Genuine choice inside plan goes to **Senate**. Approved plan goes to **Legions**.
+5. Consul synthesizes reports into one final answer with one explicit next step.
+
+No giant swarm handles every request. Each office appears only when its output is needed.
 
 ## What a Verdict Looks Like
 
