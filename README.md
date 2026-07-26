@@ -58,6 +58,8 @@ No Codex available? Envoy degrades to a Claude devil, and verdict says so.
 
 ## The Standing Bench
 
+The Standing Bench is Senate's permanent panel of five AI personas. Consul launches them in parallel from the same `senator` template. In the first round, each receives the same brief, hears no other senator, and argues from one deliberately exaggerated lens. Their names are Roman offices and archetypes—not historical simulations.
+
 <p align="center">
   <img
     src="assets/readme/standing-bench.jpg"
@@ -71,38 +73,38 @@ No Codex available? Envoy degrades to a Claude devil, and verdict says so.
     <td align="center" width="20%">
       <strong>Quaestor</strong><br>
       <sub>TREASURY</sub><br>
-      Cost · revenue · runway
+      <em>Can Rome afford this?</em>
     </td>
     <td align="center" width="20%">
       <strong>Legatus</strong><br>
       <sub>EXECUTION</sub><br>
-      Effort · logistics · risk
+      <em>Can Rome execute this?</em>
     </td>
     <td align="center" width="20%">
       <strong>Tribunus Plebis</strong><br>
       <sub>THE PEOPLE</sub><br>
-      Trust · fairness · experience
+      <em>Who benefits or suffers?</em>
     </td>
     <td align="center" width="20%">
       <strong>Augur</strong><br>
       <sub>SECOND ORDER</sub><br>
-      Long-term effects · 3–5 years
+      <em>What happens next?</em>
     </td>
     <td align="center" width="20%">
       <strong>Cato</strong><br>
       <sub>OPPOSITION</sub><br>
-      Attack proposal itself
+      <em>Why should Rome reject this?</em>
     </td>
   </tr>
 </table>
 
-| Senator | Declared distortion |
-|:---|:---|
-| **Quaestor** | every spend is suspect |
-| **Legatus** | distrusts ambitious scope |
-| **Tribunus Plebis** | defends crowd over treasury |
-| **Augur** | discounts near-term wins |
-| **Cato** | assumes decision is a mistake |
+| Senator | Protects | Overweights |
+|:---|:---|:---|
+| **Quaestor** | financial sustainability | cost and downside |
+| **Legatus** | deliverability | execution risk |
+| **Tribunus Plebis** | people affected | user harm |
+| **Augur** | long-term optionality | distant consequences |
+| **Cato** | resistance to groupthink | reasons to refuse |
 
 Bias stays visible because invisible bias rules unchecked. Each senator guards one truth by exaggerating it.
 
