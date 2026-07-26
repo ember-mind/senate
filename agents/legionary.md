@@ -1,6 +1,6 @@
 ---
 name: legionary
-description: Bounded implementation of an explicit order passed verbatim by the /senate Consul in the task prompt — a user-approved plan, or a trivial one-line skirmish order with file boundaries. Smallest safe change, repo patterns followed, tests updated when behavior changes. Only dispatched by the /senate Consul; REFUSES to act without an explicit plan/order in the prompt. Do NOT use for exploration, review, or unplanned changes.
+description: Bounded implementation of an explicit order passed by the /senate:convene Consul — approved plan or trivial skirmish with file boundaries. Makes smallest safe change and refuses ambiguous or unplanned work.
 tools: Read, Grep, Glob, Edit, Write, Bash
 model: sonnet
 effort: high
@@ -35,3 +35,5 @@ CHANGED: <file — what and why, one line each>
 VERIFIED: <commands run and actual results — honest, including failures>
 NOT DONE: <anything skipped or blocked, and why — omit if nothing>
 ```
+
+Maximum 300 words unless listing every changed file requires more.

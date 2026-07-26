@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+- Split runtime instructions into route-specific references so each request loads only the workflow it uses.
+- Lowered Consul default effort from `xhigh` to `high`; Magister and Censor now use `sonnet` by default and escalate individual high-risk calls to `opus`.
+- Removed tools from senators, added hard output budgets and research stop rules, and added risk-based post-build Censor verification.
+- Made the cross-family Envoy opt-in through `--cross-check`, and added a live consumption benchmark with token, cost, latency, and provenance gates.
+- Collapsed the five first-pass senator processes and `--debate` into one sealed, bounded `bench` sitting.
+
 ## 1.0.0
 
 First public release.

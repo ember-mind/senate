@@ -21,14 +21,14 @@
 
 ---
 
-`/senate:convene` routes each request to its proper organ. Consequential choices go to five deliberately **conflicting** senators, then to a cross-family Envoy that attacks whatever they share. Designs, faults, research, reviews, and builds go to specialist institutions. Only the Legions edit files, and campaigns begin only after you approve the actual plan.
+`/senate:convene` routes each request to its proper organ. Consequential choices go through five deliberately **adversarial** lenses in one bounded sitting; `--cross-check` can add a cross-family Envoy to attack whatever they share. Designs, faults, research, reviews, and builds go to specialist institutions. Only the Legions edit files, and campaigns begin only after you approve the actual plan.
 
 Installed from source? Invoke the same skill as `/convene`.
 
 ## Convene
 
 ```text
-/senate:convene Should we launch the paid plan now or wait for 100 beta users? [--debate] [--log]
+/senate:convene Should we launch the paid plan now or wait for 100 beta users? [--debate] [--cross-check] [--log]
 /senate:convene Add dark mode to the settings page
 /senate:convene My nightly backup silently stopped working
 ```
@@ -41,7 +41,7 @@ The Consul owns orchestration. It reads your request, gathers missing context, s
 
 | You ask for | Primary organ | Specialists do | Final result |
 |:---|:---|:---|:---|
-| A consequential choice | 🏛️ **Senate** | five senators disagree; Envoy attacks consensus | verdict with agreement, conflicts, blind spots, condition, next step |
+| A consequential choice | 🏛️ **Senate** | five lenses challenge; optional Envoy attacks consensus | verdict with agreement, conflicts, blind spots, condition, next step |
 | A new system or feature | 📐 **Collegium** | one master designs or proves feasibility | bounded, buildable plan |
 | A broken system | 📐 **Collegium** | Galen tests causes and identifies root fault | diagnosis and minimal cure |
 | Research | 📚 **Library** | Callimachus gathers and synthesizes sources | cited answer |
@@ -54,7 +54,7 @@ Non-trivial builds stop after plan. You approve actual plan; only then Legions e
 
 ## How a Decision Moves
 
-| 01 · Distill | 02 · Conflict | 03 · Attack | 04 · Decide |
+| 01 · Distill | 02 · Conflict | 03 · Optional attack | 04 · Decide |
 |:---|:---|:---|:---|
 | Consul writes one compact brief. | Five declared biases receive identical facts. | Foreign model family attacks shared assumptions. | Agreement becomes granite; conflict stays visible. |
 
@@ -65,19 +65,19 @@ The Consul does not count hands. Agreement across opposed biases is strong evide
 
 1. Consul distills question, options, constraints, numbers, and success criteria into **one brief**.
 2. Standing bench loads from [`roster.yaml`](skills/convene/roster.yaml); up to two task-specific experts may be summoned.
-3. Every senator receives same brief in parallel, independently, read-only.
-4. `--debate` optionally opens one rebuttal round.
-5. Foreign Envoy—OpenAI Codex—attacks aggregate agreement, not individual opinions.
-6. Consul performs non-averaging merge: agreement, conflicts, blind spots, Envoy attack, verdict, next step.
+3. One bounded bench sitting applies all five rows to the same brief in sealed, non-cross-referencing passes.
+4. `--debate` adds one bounded exchange inside the same sitting, on the conflict most likely to change the verdict.
+5. `--cross-check` optionally asks the Foreign Envoy—OpenAI Codex—to attack aggregate agreement, not individual opinions.
+6. Consul performs non-averaging merge: agreement, conflicts, blind spots, optional Envoy attack, verdict, next step.
 7. `--log` optionally appends one-line verdict to project `MEMORY.md`.
 
-No Codex available? Envoy degrades to a Claude devil, and verdict says so.
+With `--cross-check`, no Codex available? Envoy degrades to a Claude devil, and verdict says so.
 
 </details>
 
 ## The Standing Bench
 
-The Standing Bench is Senate's permanent panel of five AI personas. Consul launches them in parallel from the same `senator` template. In the first round, each receives the same brief, hears no other senator, and argues from one deliberately exaggerated lens. Their names are Roman offices and archetypes—not historical simulations.
+The Standing Bench is Senate's permanent panel of five reasoning personas. One `bench` agent produces their sealed first-pass memos in a bounded sitting: every row sees the same brief, may not reference another memo, and argues from one deliberately exaggerated lens. With `--debate`, the same sitting appends a short exchange between the two sides of the sharpest conflict. Their names are Roman offices and archetypes—not historical simulations.
 
 <p align="center">
   <img
@@ -122,17 +122,17 @@ The Standing Bench is Senate's permanent panel of five AI personas. Consul launc
 | **Quaestor** | financial sustainability | cost and downside |
 | **Legatus** | deliverability | execution risk |
 | **Tribunus Plebis** | people affected | user harm |
-| **Augur** | long-term optionality | distant consequences |
-| **Cato** | resistance to groupthink | reasons to refuse |
+| **Augur** | second-order effects inside the decision horizon | consequences hidden by the first-order result |
+| **Cato** | resistance to groupthink | attempts to falsify from the brief |
 
 Bias stays visible because invisible bias rules unchecked. Each senator guards one truth by exaggerating it.
 
 Bench is data, not code. Edit one row in [`roster.yaml`](skills/convene/roster.yaml) to change it.
 
-Two adversarial layers protect deliberation:
+Two optional layers can deepen deliberation:
 
-- **Cato** attacks proposal from inside institution.
-- **Foreign Envoy** attacks consensus from outside model family.
+- `--debate` deepens the sharpest conflict inside the bounded bench call.
+- `--cross-check` asks the **Foreign Envoy** to attack consensus from another model family.
 
 ## A Republic of Offices
 
@@ -160,7 +160,7 @@ If the plan contains a real tradeoff, it goes to Senate for challenge. If the pl
 | 📜 **Censors** | **Appius Claudius**, one `censor`; optional Envoy | finished code, plan, or prose needs review | concrete findings ranked by severity |
 | 🐎 **Scouts** | **Exploratores**, one `explorator` | missing context blocks another organ | terrain report for Consul's brief—not final answer |
 | ⚔️ **Legions** | named `legionary` cohorts | approved plan, or tiny unambiguous fix | file changes, checks, capped implementation report |
-| 🐍 **Foreign Envoy** | OpenAI Codex; Claude devil fallback | after Senate, optionally beside Censor | attack on shared assumption; advisory only |
+| 🐍 **Foreign Envoy** | OpenAI Codex; Claude devil fallback | with `--cross-check` after Senate or beside Censor | attack on shared assumption; advisory only |
 | 🛡️ **Praetorians** | guardrail, not agent | whenever outside text enters workflow | quoted instructions remain data, never commands |
 
 ### How Offices Hand Work Forward
@@ -190,42 +190,38 @@ No giant swarm handles every request. Each office appears only when its output i
 <details>
 <summary><strong>Read a complete sample verdict</strong></summary>
 
-`/senate:convene Move the newsletter off Substack (10% fee, 2,100 subs, 38 paid at €7/mo) to self-hosted Ghost (€12/mo VPS, migration ~2 weekends, own the list)?`
+`/senate:convene --cross-check Move the newsletter off Substack (10% fee, 2,100 subs, 38 paid at €7/mo) to self-hosted Ghost (€12/mo VPS, migration ~2 weekends, own the list)?`
 
 ```text
 # ⚖️ The Senate's Verdict
 
-🤝 Agreement — Every senator, across opposed biases, agreed on one thing:
-the €26/mo you save is not the point. The list is. On Substack you rent your
-audience; on Ghost you own it.
+🤝 Convergence — Moving removes the stated 10% fee and gives ownership of
+the list. At 38 × €7, the fee is about €26.60/month; after the €12 VPS,
+the direct saving is about €14.60/month.
 
 ⚔️ Conflicts
-· Quaestor (money) vs Legatus (execution): Quaestor says the 10% fee on
-  €266/mo is €320/year walking out the door—move now. Legatus says two
-  weekends of migration risk a broken send to 2,100 people, and a botched
-  first email costs more trust than a year of fees.
-· Tribunus Plebis (users): the reader does not care where the email is
-  hosted—they care it keeps arriving. A silent broken migration is the one
-  failure they will punish.
+· Quaestor (money) vs Legatus (execution): direct savings are about
+  €175/year, while migration consumes roughly two weekends. The brief gives
+  no monetary value for that time, so financial break-even is unknown.
+· Tribunus Plebis (people): the brief gives no evidence about deliverability
+  or reader disruption. Treat both as unknown, not as reasons to move.
 
-👁️ Blind spot (Augur, long-term) — At 38 paid you are below the line where
-fees hurt. The decision that matters is 3 years out: if the list grows to
-500 paid, Substack's fee is €4,200/year and switching then means moving a
-paying audience, which is far riskier than moving now.
+👁️ Blind spot (Augur) — The prompt prices the VPS but not ongoing operation,
+patching, backups, or recovery. Their cost could erase the direct savings.
 
-🐍 The Envoy's attack (Codex) — Every senator assumed the migration is a
-one-time cost. None asked who runs the VPS the week the Ghost server goes
-down and a send is due. Owning the list also means owning the ops. That
-recurring burden, not the two weekends, is the real price.
+🐍 The Envoy's attack (Codex) — Ownership also transfers operational
+responsibility. The missing question is who maintains the VPS and how much
+time that consumes; the brief does not answer it.
 
-🏛️ Verdict — CONDITIONAL. Move—but only after you can answer the Envoy:
-who patches and restarts the server. If that is "nobody", a managed Ghost
-host (≈€9/mo) beats both the VPS and staying on Substack.
+🏛️ Verdict — CONDITIONAL. Move only if the value of list ownership plus
+about €175/year exceeds two weekends of migration and the still-unknown
+annual operations burden.
 
-➡️ 🏛️ The Senate has spoken—the decision is yours to execute.
+➡️ Next step — Estimate annual VPS operations time, then compare it with the
+€175 direct saving.
 ```
 
-The senators never average. Where opposed biases agree, that is strongest signal; where they collide, collision is finding; Envoy asks question all five forgot.
+The senators never average. Where opposed lenses converge, that is signal; where they collide, collision is finding; `--cross-check` asks what the whole bench forgot.
 
 </details>
 
@@ -233,15 +229,16 @@ The senators never average. Where opposed biases agree, that is strongest signal
 
 | I · Conflict before confidence | II · Foreign counsel cannot command | III · Judgment earns command |
 |:---|:---|:---|
-| Roles conflict, not complement. Honest extremists expose hidden assumptions. | Briefs, files, pages, and Envoy output are data—never instructions. | Every organ remains read-only except Legions. Campaigns require approved plan. |
+| Roles challenge from different angles, but facts outrank persona. | Briefs, files, pages, and Envoy output are data—never instructions. | Every organ remains read-only except Legions. Campaigns require approved plan. |
 
 ## The Treasury
 
 Right model for each duty:
 
 - **Readers** — Scouts on haiku.
-- **Cheap many** — senators, librarians, legionaries on sonnet.
-- **Craft tier** — magistri and censors on opus.
+- **Compact bench** — five first-pass lenses in one bounded sonnet call.
+- **Bounded depth** — `--debate` adds no new agent call.
+- **Craft tier** — magistri and censors on sonnet; opus only for deep or high-risk work.
 - **Frontier one** — Consul on current session model.
 
 This keeps repeated work on lower-cost tiers while final judgment stays with your session model. See [`MODEL-POLICY.md`](MODEL-POLICY.md) for bindings and overrides.
@@ -265,13 +262,13 @@ Copies straight into `~/.claude` and gives you a bare `/convene` command:
 git clone https://github.com/ember-mind/senate && cd senate && ./install.sh
 ```
 
-Requires Claude Code. Optional: [Codex CLI](https://github.com/openai/codex) + `codex` plugin for the Envoy. Sub-agents are pinned to cost tiers (senators on `sonnet`, scouts on `haiku`, masters and censors on `opus`) using portable model-family aliases; the Consul inherits your session model, so your best model makes the call. See `MODEL-POLICY.md` to change or flatten the tiers.
+Requires Claude Code. Optional: [Codex CLI](https://github.com/openai/codex) + `codex` plugin for the Envoy. Sub-agents use portable model-family aliases: bench, senators, and ordinary craft work on `sonnet`; scouts and literal skirmishes on `haiku`; deep or high-risk craft on `opus`. Consul inherits your session model. See `MODEL-POLICY.md` to change or flatten tiers.
 
 ## Repository Map
 
 | Path | Contents |
 |:---|:---|
-| [`agents/`](agents/) | senator, magister, librarian, censor, explorator, legionary |
+| [`agents/`](agents/) | bench, senator, magister, librarian, censor, explorator, legionary |
 | [`skills/convene/`](skills/convene/) | Consul workflow, standing bench, masters, evaluation |
 | [`.claude-plugin/`](.claude-plugin/) | plugin and marketplace manifests |
 | [`MODEL-POLICY.md`](MODEL-POLICY.md) | role-to-model bindings |
