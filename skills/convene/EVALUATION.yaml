@@ -15,7 +15,10 @@ measurement:
 route_budgets:
   decision_default:
     max_agent_calls: 1
+    max_summoned_agent_calls: 2
+    max_agent_calls_with_summoned: 3
     max_agent_calls_with_cross_check: 2
+    max_agent_calls_with_cross_check_and_summoned: 4
     max_brief_words: 220
     max_bench_words_total: 400
     max_senator_words_each: 120
@@ -23,6 +26,8 @@ route_budgets:
     max_final_words: 450
   decision_debate:
     max_agent_calls: 1
+    max_summoned_agent_calls: 2
+    max_agent_calls_with_summoned: 3
     max_bench_words_total: 520
     max_rebuttal_calls: 0
     max_full_opinion_replays: 0
@@ -51,7 +56,7 @@ scenarios:
       - 'Write:'
       - 'NotebookEdit:'
     rubric:
-      - 'The plan opens with the announce line "SPQR — the Senate convenes." before any deliberation.'
+      - 'The plan opens with the announce line "SPQR — Rome convenes." before any deliberation.'
       - 'The Consul distills one compact self-contained brief (question, options, constraints, the given numbers) before launching the bench.'
       - 'One bench call receives the brief and all five role rows, returning five sealed memos that do not reference one another.'
       - 'Stipulated facts outrank persona; a lens concedes instead of manufacturing dissent.'
@@ -109,6 +114,7 @@ scenarios:
       - 'Write:'
     rubric:
       - 'Because the decision is off-profile for the standing bench, the Consul summons only a lens whose missing axis could flip the verdict; one by default, at most 2 for two independent axes.'
+      - 'Each summoned row runs as a separate senator in the same parallel dispatch as the standing bench and receives only its row plus the identical brief.'
       - 'Summoned experts challenge the bench from missing axes but concede when the brief closes their objection.'
       - 'The standing bench still runs; experts are additions, not replacements.'
       - 'A summoned lens does not invent legal facts; load-bearing domain evidence is researched before the bench.'

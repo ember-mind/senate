@@ -8,10 +8,10 @@ Use only for a consequential choice.
 - Standing bench: one bounded `bench` call producing five sealed lens memos.
 - Summoned lens: zero by default; one when a missing axis could flip verdict; two only for two independent missing axes.
 - Bench output: at most 80 words per senator; 400 standard or 520 with `--debate`.
-- Individual rebuttal or summoned senator: at most 120 words.
+- Summoned senator: at most 120 words.
 - Optional Envoy output: at most 150 words.
 - Final verdict: at most 450 words unless user requests detail.
-- Default and `--debate`: one bench call. `--cross-check` adds one Envoy call.
+- Default and `--debate`: one bench call. Each summoned lens adds one parallel `senator` call; `--cross-check` adds one Envoy call.
 
 ## Stagecraft
 
@@ -39,9 +39,9 @@ Before final synthesis:
 
 1. Distill brief under budget. If a load-bearing fact is missing, use one Scout or one Library pass before seating bench.
 2. Load all rows from `roster.yaml` beside `SKILL.md`.
-3. Add task-specific lens only when standing bench lacks an axis that could reverse decision. A lens may interpret brief, never invent domain facts. For medical, legal, financial, or current facts, gather sourced evidence first.
-4. Launch one `bench` agent with `MODE: standard` or `MODE: debate`, the identical brief, and all five roster rows. Name it `standing-bench-<slug>`. It returns five sealed memos. In debate mode only, it appends a bounded exchange between the two outcome-changing lenses.
-5. Build compact conflict map: one line per senator containing verdict and strongest claim.
+3. Define zero to two task-specific rows only when the standing bench lacks an axis that could reverse the decision. A lens may interpret the brief, never invent domain facts. For medical, legal, financial, or current facts, gather sourced evidence first.
+4. In one parallel dispatch, launch one `bench` plus each summoned row as its own `senator`. Give the bench `MODE: standard` or `MODE: debate`, the identical brief, and all five roster rows; name it `standing-bench-<slug>`. Give each summoned senator only its row and the same brief; name it `<row-name>-<slug>`. In debate mode, only the bench appends the bounded exchange.
+5. Build compact conflict map: one line per standing or summoned lens containing verdict and strongest claim.
 6. If `--debate`, preserve the bench's targeted exchange and flip condition. Do not launch individual rebuttal agents.
 7. Only with `--cross-check`, send Envoy the brief plus compact conflict map. Use `subagent_type: "codex:codex-rescue"`, name `the-envoy`.
 8. Merge without voting. Preserve convergence, direct conflict, rebuttal changes, lone material dissent, unknowns, optional Envoy attack, flip condition, and next step.

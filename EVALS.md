@@ -72,9 +72,10 @@ Quality:
 
 Budget:
 
-- default: one agent call;
-- with `--debate`: one agent call;
-- with `--cross-check`: at most two, with or without `--debate`;
+- in-profile default or `--debate`: one bench call;
+- each missing decision axis adds one parallel summoned-senator call, at most two;
+- `--cross-check` adds one Envoy call;
+- total maximum: one bench, two summoned senators, one Envoy;
 - full-opinion replay: zero;
 - no permission denial or retry caused by skill path.
 
