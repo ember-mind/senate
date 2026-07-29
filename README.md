@@ -49,17 +49,13 @@ The Consul owns orchestration. It reads your request, gathers missing context, s
 | Review of finished work | 📜 **Censors** | Appius Claudius inspects independently; Envoy may cross-check | findings ranked by severity |
 | An approved plan or tiny fix | ⚔️ **Legions** | file-bounded cohorts implement and verify | changed files, checks, concise campaign report |
 
-Each request has one primary organ. Supporting offices enter only when needed: Scouts gather missing facts; Envoy challenges shared assumptions; Praetorians keep untrusted text from issuing commands.
-
-Non-trivial builds stop after plan. You approve actual plan; only then Legions edit files. Finished work can return to Censors for independent review.
+Non-trivial builds stop after plan. You approve actual **plan**; only then **Legions** edit files. Finished work can return to **Censors** for independent review.
 
 ## How a Decision Moves
 
 | 01 · Distill | 02 · Conflict | 03 · Optional attack | 04 · Decide |
 |:---|:---|:---|:---|
-| Consul writes one compact brief. | Five declared biases receive identical facts. | Foreign model family attacks shared assumptions. | Agreement becomes granite; conflict stays visible. |
-
-The Consul does not count hands. Agreement across opposed biases is strong evidence. Named conflict is signal. Lone dissent may contain the whole reason for convening.
+| Consul writes one compact brief and asks the Senate | Five declared biases receive identical facts. | Censor or foreign model family attacks shared assumptions. | Agreement becomes granite; the Legions start their march. |
 
 <details>
 <summary><strong>Full decision run</strong></summary>
@@ -125,10 +121,6 @@ The Standing Bench is Senate's permanent panel of five reasoning personas. One `
 | **Tribunus Plebis** | people affected | user harm |
 | **Augur** | second-order effects inside the decision horizon | consequences hidden by the first-order result |
 | **Cato** | resistance to groupthink | attempts to falsify from the brief |
-
-Bias stays visible because invisible bias rules unchecked. Each senator guards one truth by exaggerating it.
-
-Bench is data, not code. Edit one row in [`roster.yaml`](skills/convene/roster.yaml) to change it.
 
 Two optional layers can deepen deliberation:
 
@@ -209,10 +201,6 @@ On a later session, Consul reads `TABULARIUM.md` before dispatch: it preserves s
 See the exact campaign contract in [`references/campaign.md`](skills/convene/references/campaign.md).
 
 ## What a Verdict Looks Like
-
-> **Verdict — migrate conditionally.**
->
-> Move only after export parity, redirect map, and rollback drill. User control survives migration; operational ambition does not.
 
 | Signal | Finding |
 |:---|:---|
