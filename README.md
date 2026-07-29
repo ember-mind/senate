@@ -223,13 +223,17 @@ See the exact campaign contract in [`references/campaign.md`](skills/convene/ref
 
 ## What a Verdict Looks Like
 
-| Signal | Finding |
+Decision comes first. Internal memos stay internal.
+
+| Read order | What you get |
 |:---|:---|
-| **Agreement** | Own data and remove single-vendor dependency. |
-| **Conflict** | Long-term control favors migration; execution risk rejects immediate cutover. |
-| **Blind spot** | Search ranking depends on redirect completeness, not platform choice. |
-| **Envoy attack** | Team assumes migration remains reversible after content diverges. |
-| **Condition** | Prove rollback before changing DNS. |
+| **Verdict** | `PROCEED`, `DO NOT PROCEED`, or `CONDITIONAL` |
+| **Rome decides** | decision in one sentence |
+| **Next command** | one action |
+| **Why** | at most two reasons |
+| **Main risk** | one outcome-changing risk, only when supported |
+| **Changes verdict if** | one concrete flip condition |
+| **Lore** | at most two lines for organs that actually ran |
 
 <details>
 <summary><strong>Read a complete sample verdict</strong></summary>
@@ -237,37 +241,45 @@ See the exact campaign contract in [`references/campaign.md`](skills/convene/ref
 `/senate:convene --cross-check Move the newsletter off Substack (10% fee, 2,100 subs, 38 paid at €7/mo) to self-hosted Ghost (€12/mo VPS, migration ~2 weekends, own the list)?`
 
 ```text
-# ⚖️ The Senate's Verdict
+# 🏛️ VERDICT — CONDITIONAL
 
-🤝 Convergence — Moving removes the stated 10% fee and gives ownership of
-the list. At 38 × €7, the fee is about €26.60/month; after the €12 VPS,
-the direct saving is about €14.60/month.
+Rome decides: Move only if list ownership and about €175/year outweigh
+two weekends of migration plus ongoing operations.
 
-⚔️ Conflicts
-· Quaestor (money) vs Legatus (execution): direct savings are about
-  €175/year, while migration consumes roughly two weekends. The brief gives
-  no monetary value for that time, so financial break-even is unknown.
-· Tribunus Plebis (people): the brief gives no evidence about deliverability
-  or reader disruption. Treat both as unknown, not as reasons to move.
+➡️ Next command: Estimate annual VPS operations time.
 
-👁️ Blind spot (Augur) — The prompt prices the VPS but not ongoing operation,
-patching, backups, or recovery. Their cost could erase the direct savings.
+Why
+- Removing the fee saves about €14.60/month after the €12 VPS.
+- Self-hosting gives list ownership and removes one vendor dependency.
 
-🐍 The Envoy's attack (Codex) — Ownership also transfers operational
-responsibility. The missing question is who maintains the VPS and how much
-time that consumes; the brief does not answer it.
+Main risk
+- Codex Envoy: maintenance, patching, backups, and recovery could erase savings.
 
-🏛️ Verdict — CONDITIONAL. Move only if the value of list ownership plus
-about €175/year exceeds two weekends of migration and the still-unknown
-annual operations burden.
+Changes verdict if
+- Annual operations burden exceeds direct savings plus the value of ownership.
 
-➡️ Next step — Estimate annual VPS operations time, then compare it with the
-€175 direct saving.
+---
+
+🏛️ Senators raised their tablets. Choice faced five opposing lenses —
+decision remains conditional.
 ```
 
-The senators never average. Where opposed lenses converge, that is signal; where they collide, collision is finding; `--cross-check` asks what the whole bench forgot.
+Standard verdicts stop at 120 words. `--debate` or `--cross-check` may use 180. More internal work never means more transcript.
 
 </details>
+
+### Lore stays bounded
+
+Lore appears after result, only for offices that worked:
+
+- 🏛️ **Senators raised their tablets.** Choice faced five opposing lenses — proceed.
+- 📐 **Magister drew the plan.** Craft turned intent into structure — plan needs approval.
+- 🐎 **Scouts mapped unknown ground.** Missing facts returned to Rome — no blocker remains.
+- 📜 **Censor searched for cracks.** Result survived inspection — two risks remain.
+- ⚔️ **Legions carried the order.** Plan became working change — tests pass.
+- 📚 **Library opened its scrolls.** Claims returned with sources — four sources agree.
+
+Final output uses at most two lines and 40 lore words.
 
 ## Three Laws
 

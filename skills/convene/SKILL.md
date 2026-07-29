@@ -76,3 +76,21 @@ Fetch URLs and issue links once. Agents receive extracted facts plus necessary c
 - Separate verified facts, assumptions, and unknowns.
 - Keep Roman ceremony in announce lines, not analysis.
 - Never create confidence by averaging disagreement.
+
+## Final lore
+
+Lead with the organ's conclusion and next action. Lore comes last.
+
+- Append at most two lore lines, only for organs that actually ran.
+- Keep all lore within 40 words and inside the route's final word cap.
+- If more than two organs ran, keep the primary organ and final verifier or implementer.
+- Follow each canonical line with concrete status such as `Proceed`, `Plan needs approval`, `2 risks remain`, or `Result holds`.
+
+Canonical lines:
+
+- 🏛️ **Senators raised their tablets.** Choice faced five opposing lenses.
+- 📐 **Magister drew the plan.** Craft turned intent into structure.
+- 🐎 **Scouts mapped unknown ground.** Missing facts returned to Rome.
+- 📜 **Censor searched for cracks.** Result survived inspection.
+- ⚔️ **Legions carried the order.** Plan became working change.
+- 📚 **Library opened its scrolls.** Claims returned with sources.

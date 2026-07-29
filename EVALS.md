@@ -67,8 +67,10 @@ Quality:
 - ★ no unsupported risk, behavior, or implementation claim;
 - no vote count and no request to re-verify a stipulated guarantee;
 - with `--cross-check`, Envoy attacks aggregate assumption in ≤150 words;
-- merge preserves conflict and states flip condition;
-- final verdict ≤450 words.
+- merge uses conflict internally but surfaces only outcome-changing material;
+- ★ verdict and command come first; raw senator memos remain internal;
+- standard final ≤120 words; `--debate` or `--cross-check` final ≤180 words;
+- at most two canonical lore lines, only for organs that ran, ≤40 lore words.
 
 Budget:
 
