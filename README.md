@@ -36,6 +36,27 @@ Installed from source? Invoke the same skill as `/convene`.
 
 One command. Different institution. Correct duty.
 
+## Install
+
+### As a plugin
+
+```
+/plugin marketplace add ember-mind/senate
+/plugin install senate@ember-mind
+```
+
+Then invoke it with `/senate:convene <your decision>` (plugin skills are namespaced by the plugin name). Update later with `/plugin marketplace update ember-mind`.
+
+### From source
+
+Copies straight into `~/.claude` and gives you a bare `/convene` command:
+
+```bash
+git clone https://github.com/ember-mind/senate && cd senate && ./install.sh
+```
+
+Requires Claude Code. Optional: [Codex CLI](https://github.com/openai/codex) + `codex` plugin for the Envoy. Sub-agents use portable model-family aliases: bench, senators, and ordinary craft work on `sonnet`; scouts and literal skirmishes on `haiku`; deep or high-risk craft on `opus`. Consul inherits your session model. See `MODEL-POLICY.md` to change or flatten tiers.
+
 ## From Request to Result
 
 The Consul owns orchestration. It reads your request, gathers missing context, sends work to the right organ, then returns **one final result** in plain language.
@@ -265,27 +286,6 @@ Right model for each duty:
 - **Frontier one** — Consul on current session model.
 
 This keeps repeated work on lower-cost tiers while final judgment stays with your session model. See [`MODEL-POLICY.md`](MODEL-POLICY.md) for bindings and overrides.
-
-## Install
-
-### As a plugin
-
-```
-/plugin marketplace add ember-mind/senate
-/plugin install senate@ember-mind
-```
-
-Then invoke it with `/senate:convene <your decision>` (plugin skills are namespaced by the plugin name). Update later with `/plugin marketplace update ember-mind`.
-
-### From source
-
-Copies straight into `~/.claude` and gives you a bare `/convene` command:
-
-```bash
-git clone https://github.com/ember-mind/senate && cd senate && ./install.sh
-```
-
-Requires Claude Code. Optional: [Codex CLI](https://github.com/openai/codex) + `codex` plugin for the Envoy. Sub-agents use portable model-family aliases: bench, senators, and ordinary craft work on `sonnet`; scouts and literal skirmishes on `haiku`; deep or high-risk craft on `opus`. Consul inherits your session model. See `MODEL-POLICY.md` to change or flatten tiers.
 
 ## Repository Map
 
