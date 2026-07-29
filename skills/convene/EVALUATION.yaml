@@ -1,48 +1,100 @@
 version: 1
+measurement:
+  collect:
+    - agent_calls
+    - input_tokens
+    - cache_creation_input_tokens
+    - cache_read_input_tokens
+    - output_tokens
+    - total_cost_usd
+    - duration_ms
+  acceptance:
+    - 'Quality gate passes before cost comparison.'
+    - 'Candidate must reduce median total cost or normalized tokens without introducing a zero on any required rubric.'
+    - 'Compare at least 3 runs when changing model or effort; prompt-cache effects make one run directional, not conclusive.'
+route_budgets:
+  decision_default:
+    max_agent_calls: 1
+    max_summoned_agent_calls: 2
+    max_agent_calls_with_summoned: 3
+    max_agent_calls_with_cross_check: 2
+    max_agent_calls_with_cross_check_and_summoned: 4
+    max_brief_words: 220
+    max_bench_words_total: 400
+    max_senator_words_each: 120
+    max_envoy_words: 150
+    max_final_words: 450
+  decision_debate:
+    max_agent_calls: 1
+    max_summoned_agent_calls: 2
+    max_agent_calls_with_summoned: 3
+    max_bench_words_total: 520
+    max_rebuttal_calls: 0
+    max_full_opinion_replays: 0
+  collegium:
+    max_agent_calls: 1
+    max_plan_words: 500
+    max_diagnosis_words: 350
+  research:
+    max_agent_calls: 1
+    max_sources: 8
+    max_final_words: 600
+  review:
+    max_agent_calls: 1
+    max_agent_calls_with_cross_check: 2
+  scout:
+    max_agent_calls: 1
+    max_final_words: 350
 scenarios:
   - id: plain_decision_full_pipeline
     user_message: |
-      /senate:convene Should I migrate the blog from WordPress to a static site generator? Traffic ~10k/month, I pay 25€/month hosting, I post twice a month.
+      /senate:convene Should a 4-person SaaS team delay launch by 3 weeks to add SSO? We have 12 beta companies: 3 require SSO before purchase, 5 do not care, 4 have not answered. Current runway is 8 months. Delay costs about €18,000 in payroll. Launching now could create a second migration path later. Success means maximizing signed annual contracts over the next 6 months without cutting runway below 5 months.
     must_include:
-      - 'Agent: .*senator'
-      - 'Agent: .*(codex|devil)'
+      - 'Agent: .*bench'
     must_not_include:
       - 'Edit:'
       - 'Write:'
       - 'NotebookEdit:'
     rubric:
-      - 'The plan opens with the announce line "SPQR — the Senate convenes." before any deliberation.'
-      - 'The Consul distills one compact self-contained brief (question, options, constraints, the given numbers) before launching any senators.'
-      - 'All bench senators are launched in a single step in parallel, each receiving the same brief plus its own role row, so none sees another''s opinion.'
-      - 'A cross-family Envoy pass attacks the aggregate consensus (shared assumption / fatal scenario), not individual opinions.'
-      - 'The merge is non-averaging: agreement, named conflicts with costs, blind spots, the Envoy''s attack, and a for/against/conditional verdict.'
+      - 'The plan opens with the announce line "SPQR — Rome convenes." before any deliberation.'
+      - 'The Consul distills one compact self-contained brief (question, options, constraints, the given numbers) before launching the bench.'
+      - 'One bench call receives the brief and all five role rows, returning five sealed memos that do not reference one another.'
+      - 'Stipulated facts outrank persona; a lens concedes instead of manufacturing dissent.'
+      - 'The default run stops after one bench call; no individual senator or Envoy runs unless its flag or a missing axis requires it.'
+      - 'The merge is non-averaging: convergence, named conflicts with costs, blind spots, and a for/against/conditional verdict.'
+      - 'Every factual claim traces to the brief or a named report; unsupported buyer values, sales behavior, or implementation facts remain unknown.'
+      - 'The final answer states a concrete condition that would flip the verdict and stays within 450 words.'
 
   - id: no_debate_by_default
     user_message: |
       /senate:convene Should we raise the price of the course from 197€ to 297€?
+    must_include:
+      - 'Agent: .*bench'
     must_not_include:
       - 'Edit:'
       - 'Write:'
     rubric:
       - 'No rebuttal/debate round is planned, because --debate was not passed.'
-      - 'Each senator is launched exactly once with the same brief.'
+      - 'Exactly one bench call returns all five first-pass memos.'
 
-  - id: debate_flag_adds_rebuttal_round
+  - id: debate_flag_adds_conflict_stress_test
     user_message: |
       /senate:convene --debate Should we raise the price of the course from 197€ to 297€?
     must_include:
-      - 'Agent: .*senator'
+      - 'Agent: .*bench'
     must_not_include:
       - 'Edit:'
       - 'Write:'
     rubric:
-      - 'After the first independent round, every senator is re-launched in parallel with the brief plus all first-round opinions to defend or update its verdict.'
-      - 'The rebuttal round is a second single-message parallel launch, not sequential calls.'
+      - 'After five sealed memos, the bench selects the sharpest grounded conflict and appends one reply from each side plus a flip condition, or explicitly declares that no grounded conflict exists.'
+      - 'The debate uses only brief facts, runs inside the existing bench call, and adds no Envoy unless --cross-check is passed.'
+      - 'Total rebuttal agent calls are zero, total agent calls are at most 1, and full-opinion replay count is zero.'
 
   - id: codex_unavailable_degrades_to_claude_devil
     user_message: |
-      /senate:convene Should I self-host analytics? Note: the Codex CLI is not installed on this machine, so the codex agent type will fail.
+      /senate:convene --cross-check Should I self-host analytics? Note: the Codex CLI is not installed on this machine, so the codex agent type will fail.
     must_include:
+      - 'Agent: .*bench'
       - 'Agent: .*senator'
     must_not_include:
       - 'Edit:'
@@ -55,14 +107,17 @@ scenarios:
     user_message: |
       /senate:convene Should I sign the 3-year exclusivity clause this client is asking for, or walk away from the contract?
     must_include:
+      - 'Agent: .*bench'
       - 'Agent: .*senator'
     must_not_include:
       - 'Edit:'
       - 'Write:'
     rubric:
-      - 'Because the decision is off-profile for the standing bench, the Consul summons at most 2 task-specific expert rows (e.g. a legal-risk lens), written as roster-shaped rows.'
-      - 'Summoned experts conflict with the bench and each other rather than complementing them.'
+      - 'Because the decision is off-profile for the standing bench, the Consul summons only a lens whose missing axis could flip the verdict; one by default, at most 2 for two independent axes.'
+      - 'Each summoned row runs as a separate senator in the same parallel dispatch as the standing bench and receives only its row plus the identical brief.'
+      - 'Summoned experts challenge the bench from missing axes but concede when the brief closes their objection.'
       - 'The standing bench still runs; experts are additions, not replacements.'
+      - 'A summoned lens does not invent legal facts; load-bearing domain evidence is researched before the bench.'
 
   - id: log_flag_unambiguous_project
     user_message: |
@@ -88,6 +143,7 @@ scenarios:
     must_not_include:
       - 'Edit:'
       - 'Write:'
+      - 'Agent: .*bench'
       - 'Agent: .*senator'
     rubric:
       - 'The Consul recognizes this as a design request, not a decision, and summons a master from the Collegium instead of the bench.'
@@ -113,13 +169,13 @@ scenarios:
       /senate:convene Design how to migrate my newsletter platform — there are at least three viable architectures and real money involved
     must_include:
       - 'Agent: .*magister'
-      - 'Agent: .*senator'
+      - 'Agent: .*bench'
     must_not_include:
       - 'Edit:'
       - 'Write:'
     rubric:
       - 'A magister drafts the plan first; because the plan contains a genuine contested choice, the Consul then runs the full Senate workflow with the plan as the brief.'
-      - 'Senators attack the plan in parallel and the Envoy attacks their consensus, ending in a non-averaging verdict.'
+      - 'The compact bench attacks the plan through five sealed lenses, ending in a non-averaging verdict; Envoy is absent unless --cross-check was passed.'
 
   - id: research_goes_to_the_library
     user_message: |
@@ -129,6 +185,7 @@ scenarios:
     must_not_include:
       - 'Edit:'
       - 'Write:'
+      - 'Agent: .*bench'
       - 'Agent: .*senator'
     rubric:
       - 'The Consul routes a research question to the Library: one librarian agent with the distilled question, not the bench.'
@@ -143,8 +200,22 @@ scenarios:
       - 'Edit:'
       - 'Write:'
     rubric:
-      - 'The Consul convenes the Censors with an explicit diff scope; optionally a parallel Envoy pass on the same scope, launched in the same message.'
+      - 'The Consul convenes one Censor with an explicit diff scope. Envoy is absent unless --cross-check or high cross-family risk is present.'
       - 'Findings are merged by severity with file:line references; cross-family agreement is tagged; nothing is edited.'
+
+  - id: high_risk_review_escalates
+    user_message: |
+      /senate:convene --cross-check Review this authentication and permission diff for security regressions
+    must_include:
+      - 'Agent: .*censor'
+      - 'Agent: .*(codex|envoy)'
+    must_not_include:
+      - 'Edit:'
+      - 'Write:'
+    rubric:
+      - 'Censor and Envoy launch in parallel on the same explicit scope.'
+      - 'Censor invocation overrides model to opus because authentication and permissions are high risk.'
+      - 'Consul merges findings by severity and tags cross-family agreement.'
 
   - id: skirmish_marches_directly
     user_message: |
@@ -152,12 +223,41 @@ scenarios:
     must_include:
       - 'Agent: .*legionary'
     must_not_include:
+      - 'Agent: .*bench'
       - 'Agent: .*magister'
       - 'Agent: .*senator'
     rubric:
       - 'The Consul applies the skirmish rule (trivial, one file, reversible, nothing destructive): no Collegium, no approval stop.'
       - 'A one-line order with an explicit file boundary is cut and a legionary is dispatched directly, announced with "A cohort is enough — the Legions march."'
+      - 'Literal copy or typo skirmish uses a per-invocation haiku override; behavior-changing code stays on sonnet.'
       - 'The legionary''s honest report (changed/verified) is relayed to the user.'
+
+  - id: high_risk_campaign_gets_censor_gate
+    user_message: |
+      /senate:convene Execute the approved plan in this conversation to migrate user permission records
+    must_include:
+      - 'Agent: .*legionary'
+      - 'Agent: .*censor'
+    rubric:
+      - 'Legions execute only the approved plan with non-overlapping file boundaries.'
+      - 'After final wave, an independent Censor runs automatically because migration and permissions are high risk.'
+      - 'Censor uses an opus invocation override and final answer reports changes, checks, and remaining risk.'
+
+  - id: multi_session_campaign_resumes_from_tabularium
+    user_message: |
+      /senate:convene Continue the approved importer campaign. Project-root TABULARIUM.md says:
+      Destination: migrate all customer records.
+      Settled: schema migration completed and verified.
+      Standing orders: preserve legacy IDs.
+      Open: implement the bounded importer.
+      Fog: redesign the admin migration UI later.
+    must_include:
+      - 'Agent: .*legionary'
+    rubric:
+      - 'The Consul reads and validates TABULARIUM.md before dispatch.'
+      - 'The schema migration under Settled is not repeated, and the legacy-ID standing order is included in the Legionary order.'
+      - 'Only the importer under Open is dispatched; the admin UI remains Fog and is not pre-sliced.'
+      - 'After the wave, the plan adds one dated Settled line and refreshes Open and Fog without writing a narrative transcript.'
 
   - id: legions_never_march_unapproved
     user_message: |

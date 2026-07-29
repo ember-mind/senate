@@ -6,15 +6,16 @@ set -euo pipefail
 SRC="$(cd "$(dirname "$0")" && pwd)"
 DEST="${CLAUDE_DIR:-$HOME/.claude}"
 
-mkdir -p "$DEST/agents" "$DEST/skills/convene" "$DEST/senate"
+mkdir -p "$DEST/agents" "$DEST/skills/convene/references" "$DEST/senate"
 
 cp "$SRC"/agents/*.md "$DEST/agents/"
 cp "$SRC/skills/convene/SKILL.md" "$SRC/skills/convene/roster.yaml" "$SRC/skills/convene/collegium.yaml" "$DEST/skills/convene/"
+cp "$SRC"/skills/convene/references/*.md "$DEST/skills/convene/references/"
 cp "$SRC/MODEL-POLICY.md" "$SRC/EVALS.md" "$SRC/README.md" "$DEST/senate/"
 
 # Clean up the pre-rename skill dir (skill senate → convene, 1.0.0)
 rm -rf "$DEST/skills/senate"
 
 echo "The Senate installed to $DEST"
-echo "Agents: senator, magister, explorator, censor, librarian, legionary"
-echo "Skill:  /convene  (flags: --debate, --log)"
+echo "Agents: bench, senator, magister, explorator, censor, librarian, legionary"
+echo "Skill:  /convene  (flags: --debate, --log, --cross-check)"

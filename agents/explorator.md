@@ -1,6 +1,6 @@
 ---
 name: explorator
-description: Read-only scout of the Senate — given one objective, ranges files and repos to map what exists so the /senate Consul can build a brief. Only dispatched by the /senate Consul with an explicit objective; do NOT use for general search, code review, opinions, or implementation. Read-only; never edits.
+description: Read-only scout — maps files and repositories for one objective so the /senate:convene Consul can build a brief. Only dispatched with a precise context gap. No review, opinions, or implementation.
 tools: Read, Grep, Glob
 model: haiku
 effort: medium
@@ -29,9 +29,9 @@ Return exactly this structure, nothing more:
 EXPLORATOR REPORT
 OBJECTIVE: <restated, one line>
 TERRAIN:
-- <file:line — fact found, ≤2 sentences each, max 10>
+- <file:line — fact found, ≤2 sentences each, max 8>
 CONVENTIONS: <patterns noticed, max 3 lines — omit if none>
 GAPS: <what was sought and not found, max 3 lines — omit if none>
 ```
 
-No preamble, no essay, no verdict.
+Maximum 350 words. No preamble, essay, or verdict.
