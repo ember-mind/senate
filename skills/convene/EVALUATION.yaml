@@ -23,12 +23,14 @@ route_budgets:
     max_bench_words_total: 400
     max_senator_words_each: 120
     max_envoy_words: 150
-    max_final_words: 450
+    max_final_words: 120
+    max_final_words_with_cross_check: 180
   decision_debate:
     max_agent_calls: 1
     max_summoned_agent_calls: 2
     max_agent_calls_with_summoned: 3
     max_bench_words_total: 520
+    max_final_words: 180
     max_rebuttal_calls: 0
     max_full_opinion_replays: 0
   collegium:
@@ -45,6 +47,11 @@ route_budgets:
   scout:
     max_agent_calls: 1
     max_final_words: 350
+final_lore:
+  max_lines: 2
+  max_words: 40
+  only_organs_that_ran: true
+  position: after_result
 scenarios:
   - id: plain_decision_full_pipeline
     user_message: |
@@ -61,9 +68,11 @@ scenarios:
       - 'One bench call receives the brief and all five role rows, returning five sealed memos that do not reference one another.'
       - 'Stipulated facts outrank persona; a lens concedes instead of manufacturing dissent.'
       - 'The default run stops after one bench call; no individual senator or Envoy runs unless its flag or a missing axis requires it.'
-      - 'The merge is non-averaging: convergence, named conflicts with costs, blind spots, and a for/against/conditional verdict.'
+      - 'The first line is "VERDICT — PROCEED", "VERDICT — DO NOT PROCEED", or "VERDICT — CONDITIONAL"; one-sentence decision and Next command appear before explanation.'
+      - 'The merge is non-averaging but hides raw memos: at most two reasons, one outcome-changing risk, and one grounded flip condition.'
       - 'Every factual claim traces to the brief or a named report; unsupported buyer values, sales behavior, or implementation facts remain unknown.'
-      - 'The final answer states a concrete condition that would flip the verdict and stays within 450 words.'
+      - 'The final answer stays within 120 words, including at most two lore lines and 40 lore words.'
+      - 'Because only the bench ran, lore uses the Senators line and names no Magister, Scout, Censor, Legion, or Library.'
 
   - id: no_debate_by_default
     user_message: |
@@ -89,6 +98,7 @@ scenarios:
       - 'After five sealed memos, the bench selects the sharpest grounded conflict and appends one reply from each side plus a flip condition, or explicitly declares that no grounded conflict exists.'
       - 'The debate uses only brief facts, runs inside the existing bench call, and adds no Envoy unless --cross-check is passed.'
       - 'Total rebuttal agent calls are zero, total agent calls are at most 1, and full-opinion replay count is zero.'
+      - 'The final verdict still starts with decision and command, surfaces only the decisive conflict, and stays within 180 words including lore.'
 
   - id: codex_unavailable_degrades_to_claude_devil
     user_message: |
@@ -150,6 +160,7 @@ scenarios:
       - 'Vitruvius (or an equivalent architecture-craft row) is launched as a single magister agent with the distilled brief and concrete file pointers.'
       - 'The magister returns a buildable PLAN (parts in build order, risks); nothing is edited or implemented.'
       - 'Implementation is offered as a separate follow-up, never assumed.'
+      - 'The conclusion and approval state precede one Magister lore line; no uninvoked organ appears.'
 
   - id: broken_thing_summons_galen
     user_message: |
@@ -190,6 +201,7 @@ scenarios:
     rubric:
       - 'The Consul routes a research question to the Library: one librarian agent with the distilled question, not the bench.'
       - 'The delivered scroll cites sources and separates established from contested claims.'
+      - 'The cited answer precedes one Library lore line; no uninvoked organ appears.'
 
   - id: review_goes_to_the_censors
     user_message: |
@@ -202,6 +214,7 @@ scenarios:
     rubric:
       - 'The Consul convenes one Censor with an explicit diff scope. Envoy is absent unless --cross-check or high cross-family risk is present.'
       - 'Findings are merged by severity with file:line references; cross-family agreement is tagged; nothing is edited.'
+      - 'Sound/not-sound result precedes one Censor lore line; no uninvoked organ appears.'
 
   - id: high_risk_review_escalates
     user_message: |
@@ -231,6 +244,7 @@ scenarios:
       - 'A one-line order with an explicit file boundary is cut and a legionary is dispatched directly, announced with "A cohort is enough — the Legions march."'
       - 'Literal copy or typo skirmish uses a per-invocation haiku override; behavior-changing code stays on sonnet.'
       - 'The legionary''s honest report (changed/verified) is relayed to the user.'
+      - 'Changed/verified result precedes one Legions lore line; no uninvoked organ appears.'
 
   - id: high_risk_campaign_gets_censor_gate
     user_message: |
@@ -242,6 +256,7 @@ scenarios:
       - 'Legions execute only the approved plan with non-overlapping file boundaries.'
       - 'After final wave, an independent Censor runs automatically because migration and permissions are high risk.'
       - 'Censor uses an opus invocation override and final answer reports changes, checks, and remaining risk.'
+      - 'Final answer ends with exactly two lore lines, Legions then Censor, within 40 lore words.'
 
   - id: multi_session_campaign_resumes_from_tabularium
     user_message: |

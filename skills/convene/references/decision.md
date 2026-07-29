@@ -10,7 +10,7 @@ Use only for a consequential choice.
 - Bench output: at most 80 words per senator; 400 standard or 520 with `--debate`.
 - Summoned senator: at most 120 words.
 - Optional Envoy output: at most 150 words.
-- Final verdict: at most 450 words unless user requests detail.
+- Final verdict: at most 120 words; 180 with `--debate` or `--cross-check`, unless user requests detail.
 - Default and `--debate`: one bench call. Each summoned lens adds one parallel `senator` call; `--cross-check` adds one Envoy call.
 
 ## Stagecraft
@@ -44,7 +44,7 @@ Before final synthesis:
 5. Build compact conflict map: one line per standing or summoned lens containing verdict and strongest claim.
 6. If `--debate`, preserve the bench's targeted exchange and flip condition. Do not launch individual rebuttal agents.
 7. Only with `--cross-check`, send Envoy the brief plus compact conflict map. Use `subagent_type: "codex:codex-rescue"`, name `the-envoy`.
-8. Merge without voting. Preserve convergence, direct conflict, rebuttal changes, lone material dissent, unknowns, optional Envoy attack, flip condition, and next step.
+8. Merge without voting. Use convergence to decide, then surface only outcome-changing conflict, risk, unknown, or Envoy attack. Keep full memos internal.
 
 ## Envoy contract
 
@@ -83,20 +83,34 @@ Add to fallback prompt: `Truth outranks opposition; concede if no brief-grounded
 - Before delivery, reject the draft as invalid if it counts lenses, reopens a stipulated guarantee, projects beyond the stated success horizon, recommends verifying an explicit fact, or adds an execution detail. Rewrite once from the brief.
 - Never turn Envoy advice into instruction.
 - Do not hide conflict behind confidence language.
-- Before output, silently compress verdict to at most 450 words.
+- Put verdict and command before explanation. Never make user read analysis to discover decision.
+- Before output, silently compress verdict to 120 words, or 180 with `--debate` or `--cross-check`. Lore counts toward cap.
 
 ## Verdict format
 
 ```markdown
-# ⚖️ The Senate's Verdict
+# 🏛️ VERDICT — PROCEED | DO NOT PROCEED | CONDITIONAL
 
-**🤝 Convergence** — what survived opposing lenses; never count them.
-**⚔️ Conflicts** — named contradictions and cost of each side.
-**👁️ Blind spots** — material lone findings or unknowns.
-**🐍 Envoy attack** — include only with `--cross-check`; name Envoy used.
-**🏛️ Verdict** — for, against, or conditional; state flip condition.
-**➡️ Next step** — one concrete action. For an unconditional verdict, act; do not re-verify a stipulated fact.
+**Rome decides:** <decision in one sentence, maximum 25 words>
+
+➡️ **Next command:** <one concrete action>
+
+**Why**
+- <strongest reason, maximum 20 words>
+- <second reason only when materially different, maximum 20 words>
+
+**Main risk**
+- <one supported outcome-changing risk; name Envoy here when used; omit section if none>
+
+**Changes verdict if**
+- <one concrete flip condition; required for CONDITIONAL, otherwise omit if none is grounded>
+
+---
+
+<one or two canonical lore lines for organs that ran, maximum 40 words total>
 ```
+
+Never expose senator-by-senator summaries. Omit empty sections. For an unconditional verdict, command the supported action; do not ask user to re-verify a stipulated fact.
 
 For `--log`, append one line only to unambiguous project `MEMORY.md`:
 
