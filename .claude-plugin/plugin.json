@@ -1,7 +1,6 @@
 {
   "name": "senate",
   "description": "Role-based agent swarm for Claude Code. /senate:convene routes each request to an organ: decisions get five adversarial lenses in one bounded sitting and an optional cross-family envoy; designs and diagnoses go to the Collegium, research to the Library, review to the Censors, building to the Legions (approved plans only).",
-  "version": "1.0.0",
   "author": {
     "name": "ember-mind"
   },

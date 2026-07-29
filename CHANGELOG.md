@@ -9,6 +9,7 @@
 - Collapsed the five first-pass senator processes and `--debate` into one sealed, bounded `bench` sitting.
 - Documented long-running campaigns with a Tabularium workflow image, explicit cross-session resume rules, and evaluation coverage.
 - Put verdict and next command first, cut standard final output to 120 words, and add bounded lore lines only for organs that ran.
+- Removed the fixed plugin version so marketplace updates follow each release commit SHA.
 
 ## 1.0.0
 
