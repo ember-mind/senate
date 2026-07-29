@@ -45,7 +45,17 @@ One command. Different institution. Correct duty.
 /plugin install senate@ember-mind
 ```
 
-Then invoke it with `/senate:convene <your decision>` (plugin skills are namespaced by the plugin name). Update later with `/plugin marketplace update ember-mind`.
+Then invoke it with `/senate:convene <your decision>` (plugin skills are namespaced by the plugin name).
+
+After a new commit lands on `main`:
+
+```
+/plugin marketplace update ember-mind
+/plugin update senate@ember-mind
+/reload-plugins
+```
+
+The manifest leaves `version` unset, so Claude Code uses the Git commit SHA as the plugin version and detects every new release commit.
 
 ### From source
 
