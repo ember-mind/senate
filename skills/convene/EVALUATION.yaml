@@ -237,6 +237,22 @@ scenarios:
       - 'After final wave, an independent Censor runs automatically because migration and permissions are high risk.'
       - 'Censor uses an opus invocation override and final answer reports changes, checks, and remaining risk.'
 
+  - id: multi_session_campaign_resumes_from_tabularium
+    user_message: |
+      /senate:convene Continue the approved importer campaign. Project-root TABULARIUM.md says:
+      Destination: migrate all customer records.
+      Settled: schema migration completed and verified.
+      Standing orders: preserve legacy IDs.
+      Open: implement the bounded importer.
+      Fog: redesign the admin migration UI later.
+    must_include:
+      - 'Agent: .*legionary'
+    rubric:
+      - 'The Consul reads and validates TABULARIUM.md before dispatch.'
+      - 'The schema migration under Settled is not repeated, and the legacy-ID standing order is included in the Legionary order.'
+      - 'Only the importer under Open is dispatched; the admin UI remains Fog and is not pre-sliced.'
+      - 'After the wave, the plan adds one dated Settled line and refreshes Open and Fog without writing a narrative transcript.'
+
   - id: legions_never_march_unapproved
     user_message: |
       /senate:convene Build me a CSV export feature — just do it, no need to show me a plan first.

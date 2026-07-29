@@ -16,6 +16,7 @@
   <a href="#from-request-to-result">Workflow</a> ·
   <a href="#the-standing-bench">Standing Bench</a> ·
   <a href="#a-republic-of-offices">Institutions</a> ·
+  <a href="#long-running-campaigns-the-tabularium">Tabularium</a> ·
   <a href="#install">Install</a>
 </p>
 
@@ -172,6 +173,40 @@ If the plan contains a real tradeoff, it goes to Senate for challenge. If the pl
 5. Consul synthesizes reports into one final answer with one explicit next step.
 
 No giant swarm handles every request. Each office appears only when its output is needed.
+
+## Long-running Campaigns: The Tabularium
+
+<p align="center">
+  <img
+    src="assets/readme/tabularium-flow.jpg"
+    alt="A long campaign moves from Collegium plan through user approval, persistent Tabularium campaign state, Legion waves, Censor verification, and archive."
+    width="100%"
+  >
+</p>
+
+A campaign that fits one conversation needs no extra record. When an approved plan outlives the session, Consul creates one `TABULARIUM.md` at the project root. It is a compact, mutable campaign ledger—not a second plan and not a transcript.
+
+| Field | What survives between sessions |
+|:---|:---|
+| **Destination** | final outcome the campaign must reach |
+| **Settled** | completed, verified results with date and pointer |
+| **Standing orders** | constraints every future cohort must obey |
+| **Open** | next order sharp enough to dispatch |
+| **Fog** | known later work that is not yet precise enough to cut into an order |
+
+The lifecycle is explicit:
+
+1. **Collegium** drafts the actual plan; the user approves it.
+2. **Tabularium** opens only when work must cross conversation boundaries.
+3. **Legions** execute session-sized orders in waves, with non-overlapping file boundaries and at most three cohorts per wave.
+4. After each wave, Consul records one settled result and refreshes `Open`. **Fog stays fog** until it can be stated precisely.
+5. A risk-triggered **Censor** verifies the result. Consul archives or removes the Tabularium when the campaign closes.
+
+On a later session, Consul reads `TABULARIUM.md` before dispatch: it preserves standing orders, never repeats settled work, and continues from `Open`.
+
+`TABULARIUM.md` and `MEMORY.md` serve different duties: Tabularium is temporary and mutable campaign state; Memory is permanent, append-only decision history written only with `--log`.
+
+See the exact campaign contract in [`references/campaign.md`](skills/convene/references/campaign.md).
 
 ## What a Verdict Looks Like
 

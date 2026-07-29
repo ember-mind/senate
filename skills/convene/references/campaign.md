@@ -62,6 +62,10 @@ Final answer contains changed files, checks, remaining risk, and one next step.
 
 Create `TABULARIUM.md` only when campaign outlives one conversation. Keep one live campaign:
 
+Announce creation or update:
+
+> 🏺 The Tabularium records the campaign.
+
 ```markdown
 ---
 type: campaign
@@ -84,4 +88,15 @@ campaign: <name>
 <known later work not yet sharp enough>
 ```
 
-Update one line after each wave or verdict. Archive or remove when campaign ends.
+`TABULARIUM.md` is mutable campaign state. `MEMORY.md` is append-only decision history; never use one as the other.
+
+When resuming in a later conversation:
+
+1. Read project-root `TABULARIUM.md` before dispatch.
+2. Confirm its campaign matches user request. If absent or ambiguous, ask instead of guessing.
+3. Preserve `Standing orders`.
+4. Never repeat `Settled` work.
+5. Dispatch only the order under `Open`.
+6. Keep `Fog` unsliced until it can be stated as a precise, independently verifiable order.
+
+After each wave or verdict, add one dated `Settled` line and refresh `Open` and `Fog`. Do not write narrative history. Archive or remove Tabularium when campaign ends.

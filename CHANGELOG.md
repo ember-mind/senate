@@ -7,6 +7,7 @@
 - Removed tools from senators, added hard output budgets and research stop rules, and added risk-based post-build Censor verification.
 - Made the cross-family Envoy opt-in through `--cross-check`, and added a live consumption benchmark with token, cost, latency, and provenance gates.
 - Collapsed the five first-pass senator processes and `--debate` into one sealed, bounded `bench` sitting.
+- Documented long-running campaigns with a Tabularium workflow image, explicit cross-session resume rules, and evaluation coverage.
 
 ## 1.0.0
 
