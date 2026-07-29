@@ -1,7 +1,7 @@
 <p align="center">
   <img
     src="assets/readme/hero.jpg"
-    alt="Rome does not average. Rome decides. Five senators sit in the Curia while a Foreign Envoy waits beyond the guarded doors."
+    alt="An empire of minds. One verdict. Rome decides. Five senators sit in the Curia while a Foreign Envoy waits beyond the guarded doors."
     width="100%"
   >
 </p>
